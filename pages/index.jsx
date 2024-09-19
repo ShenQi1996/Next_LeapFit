@@ -50,9 +50,9 @@ const HomePage = () => {
 
       <div className={styles.divCol3}>
         <div>
-          <p>On-site fit texting.</p>
-          <p>Located: 3rd floor Simulation/ Fit texting Room</p>
-          <p> <span>$50</span> per fit text</p>
+          <p>On-site fit testing.</p>
+          <p>Located: 3rd floor Simulation/ Fit testing Room</p>
+          <p> <span>$50</span> per fit test</p>
         </div>
         <dibv>
           <Image className={styles.div1Image} src={image1} alt='stockImage1'/>  

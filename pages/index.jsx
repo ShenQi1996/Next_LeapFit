@@ -51,7 +51,7 @@ const HomePage = () => {
       <div className={styles.divCol3}>
         <div>
           <p>On-site fit texting.</p>
-          <p>Located: 3rd floor Simulation/ Fit testing Room</p>
+          <p>Located: 3rd floor Simulation/ Fit texting Room</p>
           <p> <span>$50</span> per fit text</p>
         </div>
         <dibv>

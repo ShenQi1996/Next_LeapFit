@@ -36,7 +36,7 @@ const HomePage = () => {
         </div>
         <div className={styles.div3}>
           <div className={styles.leafButton}>
-          <a className={styles.link} href='https://calendly.com/leapfit2024' target='_blank'>Schedule Fit Test</a>
+          <a className={styles.link} href='https://calendly.com/Securefit2024' target='_blank'>Schedule Fit Test</a>
           </div>
         </div>
       </div>

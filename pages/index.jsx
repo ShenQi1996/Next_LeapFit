@@ -28,8 +28,8 @@ const HomePage = () => {
       
       <div className={styles.divCol1}>
         <div className={styles.div1}>
+          <h1>Secure Fi</h1>
           <div className={styles.logo}></div>
-            <h1>Secure Fit</h1>
         </div>
         <div className={styles.div2}>
           <h3>"Secure Fit: Precision in every  <span>breath</span>."</h3>

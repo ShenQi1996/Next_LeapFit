@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearUser } from '../store/store';
 import image2 from '../pages/images/images2.svg';
 import image1 from '../pages/images/images1.svg';
-
 import styles from "./style/index.module.scss";
 
 
@@ -29,13 +28,13 @@ const HomePage = () => {
       
       <div className={styles.divCol1}>
         <div className={styles.div1}>
-          <div className={styles.logo}> </div>
+          <div className={styles.logo}></div>
+            <h1>Secure Fit</h1>
         </div>
         <div className={styles.div2}>
           <h3>"Secure Fit: Precision in every  <span>breath</span>."</h3>
         </div>
         <div className={styles.div3}>
-          <div className={styles.leaf}></div>
           <div className={styles.leafButton}>
           <a className={styles.link} href='https://calendly.com/leapfit2024' target='_blank'>Schedule Fit Test</a>
           </div>

@@ -1,3 +1,4 @@
+
 .Homepage {
     display: flex;
     flex-direction: column;
@@ -49,18 +50,22 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         padding-top: 20px;
         position: relative;
         .logo {
-            width: 200px;
-            height: 200px;
-            background-image: url(../images/Logo.jpg);
+            width: 150px;
+            height: 150px;
+            background-image: url(../images/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG.png);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: .95;
-            border-radius: 25px;
+        }
+        h1{
+            color: #005889;
+            font-family: "Kay Pho Du", serif;
+            font-weight: bolder;
+            font-style: normal;
         }
     }
     .div2 {
@@ -121,8 +126,7 @@
     .Homepage{
         .div1 {
             .logo {
-                width: 400px;
-                height: 350px;
+
             }
         }
         .div2 {

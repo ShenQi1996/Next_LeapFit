@@ -34,18 +34,15 @@ const HomePage = () => {
         <div className={styles.div2}>
           <h3>"Secure Fit: Precision in every  <span>breath</span>."</h3>
         </div>
+        <div className={styles.divCol2}>
+          <Image className={styles.div1Image} src={image2} alt='stockImage1'/>  
+        </div>
         <div className={styles.div3}>
           <div className={styles.leafButton}>
           <a className={styles.link} href='https://calendly.com/Securefit2024' target='_blank'>Schedule Fit Test</a>
           </div>
         </div>
       </div>
-
-
-      <div className={styles.divCol2}>
-        <Image className={styles.div1Image} src={image2} alt='stockImage1'/>  
-      </div>
-
 
       <div className={styles.divCol3}>
         <div>

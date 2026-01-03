@@ -188,6 +188,9 @@ const HomePage = () => {
           <div className={styles.footerSection}>
             <h4>Contact</h4>
             <ul>
+              <li>
+                <a href='mailto:SecureFit2024@gmail.com'>SecureFit2024@gmail.com</a>
+              </li>
               <li>New York Area</li>
               <li>
                 <a href='https://calendly.com/Securefit2024' target='_blank' rel='noopener noreferrer'>

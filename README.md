@@ -247,9 +247,13 @@ For deployment on a traditional server (AWS, DigitalOcean, etc.):
 
 ```
 Next_LeapFit-main/
+├── components/
+│   └── ChatWidget.jsx  # Landing page chat assistant
 ├── pages/
 │   ├── _app.jsx        # App wrapper
 │   ├── index.jsx       # Landing page
+│   ├── api/
+│   │   └── chat.js     # OpenAI chat API route
 │   ├── images/         # Image assets
 │   └── style/          # SCSS stylesheets
 ├── .nvmrc              # Pinned Node.js version (24.19.0)
@@ -267,9 +271,13 @@ Next_LeapFit-main/
 
 ## Environment Variables
 
-This landing page does not require any environment variables yet.
+Create a `.env.local` file in the project root (not a folder named `.env`):
 
-When the chat bot is added, the OpenAI API key will go in `.env.local` (never in frontend code).
+```
+OPENAI_API_KEY=sk-your-key-here
+```
+
+Never commit this file or put the key in frontend code. On Vercel, add the same `OPENAI_API_KEY` variable to Production (and Preview if needed).
 
 ## Troubleshooting
 

@@ -312,9 +312,9 @@ netlify deploy --prod
 
 ## Environment Variables
 
-This landing page does not require environment variables yet.
+Set `OPENAI_API_KEY` in Vercel Production (and Preview if needed), or in `.env.local` locally.
 
-When the chat bot is added, set `OPENAI_API_KEY` in Vercel/Netlify (or `.env.local` locally). Do not prefix it with `NEXT_PUBLIC_`.
+Do not prefix it with `NEXT_PUBLIC_`. After adding it on Vercel, redeploy Production.
 
 ---
 

@@ -4,6 +4,7 @@ import image2 from './images/images2.svg';
 import image1 from './images/images1.svg';
 import styles from "./style/index.module.scss";
 
+const BROOKLYN_URL = 'https://next-leap-fit-bk-2026.vercel.app/';
 
 const HomePage = () => {
 
@@ -17,6 +18,14 @@ const HomePage = () => {
             <span className={styles.navTitle}>Secure Fit LLC</span>
           </div>
           <div className={styles.navActions}>
+            <a
+              className={styles.navButtonSecondary}
+              href={BROOKLYN_URL}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Brooklyn Location
+            </a>
             <a 
               className={styles.navButton} 
               href='https://calendly.com/Securefit2024' 
@@ -76,14 +85,24 @@ const HomePage = () => {
           </div>
           
           <div className={styles.ctaSection}>
-            <a 
-              className={styles.ctaButton} 
-              href='https://calendly.com/Securefit2024' 
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Schedule Fit Test
-            </a>
+            <div className={styles.ctaButtons}>
+              <a 
+                className={styles.ctaButton} 
+                href='https://calendly.com/Securefit2024' 
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Schedule Fit Test
+              </a>
+              <a
+                className={styles.ctaButtonSecondary}
+                href={BROOKLYN_URL}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Brooklyn Location
+              </a>
+            </div>
             <p className={styles.ctaNote}>Quick and convenient appointments</p>
           </div>
         </div>
@@ -195,6 +214,11 @@ const HomePage = () => {
               <li>
                 <a href='https://calendly.com/Securefit2024' target='_blank' rel='noopener noreferrer'>
                   Schedule Appointment
+                </a>
+              </li>
+              <li>
+                <a href={BROOKLYN_URL} target='_blank' rel='noopener noreferrer'>
+                  Brooklyn Location
                 </a>
               </li>
             </ul>

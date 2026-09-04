@@ -57,6 +57,9 @@
 .navActions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 
 .navButton {
@@ -75,6 +78,25 @@
         color: white;
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(0, 126, 102, 0.2);
+    }
+}
+
+.navButtonSecondary {
+    padding: 0.6rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: white;
+    background: #007E66;
+    border: 2px solid #007E66;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: #005889;
+        border-color: #005889;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 88, 137, 0.25);
     }
 }
 
@@ -240,6 +262,13 @@
     gap: 0.75rem;
 }
 
+.ctaButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .ctaButton {
     display: inline-block;
     padding: 1.1rem 3rem;
@@ -262,6 +291,32 @@
         box-shadow: 0 6px 25px rgba(0, 88, 137, 0.35);
     }
     
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.ctaButtonSecondary {
+    display: inline-block;
+    padding: 1.1rem 3rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #007E66;
+    background: white;
+    border: 2px solid #007E66;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+
+    &:hover {
+        background: #007E66;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0, 126, 102, 0.2);
+    }
+
     &:active {
         transform: translateY(0);
     }
@@ -566,6 +621,25 @@
         color: #888;
         font-size: 0.85rem;
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .nav {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .navActions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navButton,
+    .navButtonSecondary {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
     }
 }
 

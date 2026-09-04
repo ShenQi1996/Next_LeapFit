@@ -148,13 +148,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.25rem;
     margin-bottom: 1rem;
 }
 
 .logo {
-    width: 60px;
-    height: 80px;
+    width: 110px;
+    height: 147px;
     background-image: url(../images/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG.png);
     background-size: contain;
     background-position: center;
@@ -767,10 +767,42 @@
     filter: brightness(0) invert(1);
 }
 
+.footerLegal {
+    max-width: 1200px;
+    margin: 2.5rem auto 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid #333;
+}
+
+.footerLegalTitle {
+    margin: 0 0 0.65rem;
+    color: #00B499;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.footerLegal ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #aaa;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.footerLegal li {
+    margin-bottom: 0.3rem;
+}
+
+.footerLegal li:last-child {
+    margin-bottom: 0;
+}
+
 .footerBottom {
     max-width: 1200px;
-    margin: 3rem auto 0;
-    padding-top: 2rem;
+    margin: 1.5rem auto 0;
+    padding-top: 1.5rem;
     border-top: 1px solid #333;
     text-align: center;
     

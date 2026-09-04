@@ -6,7 +6,8 @@ import ChatWidget from '../components/ChatWidget';
 import SampleEcard from '../components/SampleEcard';
 import styles from "./style/index.module.scss";
 
-const BROOKLYN_URL = 'https://next-leap-fit-bk-2026.vercel.app/';
+const MANHATTAN_CALENDLY = 'https://calendly.com/Securefit2024';
+const BROOKLYN_CALENDLY = 'https://calendly.com/securefit-bk/15-mins';
 
 const HomePage = () => {
   const [ecardOpen, setEcardOpen] = useState(false);
@@ -51,24 +52,24 @@ const HomePage = () => {
         <nav className={styles.nav}>
           <div className={styles.navBrand}>
             <div className={styles.navLogo}></div>
-            <span className={styles.navTitle}>Secure Fit LLC</span>
+            <span className={styles.navTitle}>Secure Fit llc</span>
           </div>
           <div className={styles.navActions}>
             <a
               className={styles.navButtonSecondary}
-              href={BROOKLYN_URL}
+              href={BROOKLYN_CALENDLY}
               target='_blank'
               rel='noopener noreferrer'
             >
-              Brooklyn Location
+              Schedule Brooklyn
             </a>
             <a 
               className={styles.navButton} 
-              href='https://calendly.com/Securefit2024' 
+              href={MANHATTAN_CALENDLY} 
               target='_blank'
               rel='noopener noreferrer'
             >
-              Schedule Appointment
+              Schedule Manhattan
             </a>
           </div>
         </nav>
@@ -85,7 +86,7 @@ const HomePage = () => {
         <div className={styles.heroContent}>
           <div className={styles.brandSection}>
             <div className={styles.logo}></div>
-            <h1 className={styles.brandTitle}>Secure Fit LLC</h1>
+            <h1 className={styles.brandTitle}>Secure Fit llc</h1>
           </div>
           
           <div className={styles.tagline}>
@@ -158,19 +159,19 @@ const HomePage = () => {
               <div className={styles.ctaButtonRow}>
                 <a 
                   className={styles.ctaButton} 
-                  href='https://calendly.com/Securefit2024' 
+                  href={MANHATTAN_CALENDLY} 
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Schedule Fit Test
+                  Schedule Manhattan
                 </a>
                 <a
                   className={styles.ctaButtonSecondary}
-                  href={BROOKLYN_URL}
+                  href={BROOKLYN_CALENDLY}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Brooklyn Location
+                  Schedule Brooklyn
                 </a>
               </div>
             </div>
@@ -274,7 +275,7 @@ const HomePage = () => {
           <div className={styles.footerSection}>
             <div className={styles.footerBrand}>
               <div className={styles.footerLogo}></div>
-              <h3>Secure Fit LLC</h3>
+              <h3>Secure Fit llc</h3>
               <p>Professional respiratory fit testing services</p>
             </div>
           </div>
@@ -304,20 +305,29 @@ const HomePage = () => {
               </li>
               <li>New York Area</li>
               <li>
-                <a href='https://calendly.com/Securefit2024' target='_blank' rel='noopener noreferrer'>
-                  Schedule Appointment
+                <a href={MANHATTAN_CALENDLY} target='_blank' rel='noopener noreferrer'>
+                  Schedule Manhattan
                 </a>
               </li>
               <li>
-                <a href={BROOKLYN_URL} target='_blank' rel='noopener noreferrer'>
-                  Brooklyn Location
+                <a href={BROOKLYN_CALENDLY} target='_blank' rel='noopener noreferrer'>
+                  Schedule Brooklyn
                 </a>
               </li>
             </ul>
           </div>
         </div>
+        <div className={styles.footerLegal}>
+          <p className={styles.footerLegalTitle}>Legal</p>
+          <ul>
+            <li>OSHA 29 CFR 1910.134 App. A protocols.</li>
+            <li>Pass applies only to the listed respirator until expiration.</li>
+            <li>Not a medical clearance. Employer remains responsible for its program.</li>
+            <li>The sample e-card is for demonstration only and is not a valid fit-test record.</li>
+          </ul>
+        </div>
         <div className={styles.footerBottom}>
-          <p>&copy; {new Date().getFullYear()} Secure Fit LLC. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Secure Fit llc. All rights reserved.</p>
         </div>
       </footer>
       <ChatWidget />

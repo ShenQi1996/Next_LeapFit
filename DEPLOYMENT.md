@@ -4,6 +4,7 @@ This guide provides detailed instructions for deploying the Secure Fit LLC landi
 
 ## Pre-Deployment Checklist
 
+- [ ] Node.js version is `24.19.0` (`node --version`)
 - [ ] All code is committed to version control
 - [ ] Application builds successfully (`npm run build`)
 - [ ] Production build runs locally (`npm start`)
@@ -18,6 +19,10 @@ This guide provides detailed instructions for deploying the Secure Fit LLC landi
 ```bash
 # Navigate to project directory
 cd Next_LeapFit-main
+
+# Use the pinned Node version
+nvm install 24.19.0
+nvm use 24.19.0
 
 # Install dependencies (if not already done)
 npm install
@@ -154,10 +159,11 @@ netlify deploy --prod
    - Configure security group (open port 3000)
    - Launch and connect via SSH
 
-2. **Install Node.js**:
+2. **Install Node.js `24.19.0`** (nvm recommended):
    ```bash
-   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-   sudo apt-get install -y nodejs
+   nvm install 24.19.0
+   nvm use 24.19.0
+   node --version   # should print v24.19.0
    ```
 
 3. **Clone and Setup**:
@@ -216,7 +222,7 @@ netlify deploy --prod
 
 1. **Create Dockerfile**:
    ```dockerfile
-   FROM node:18-alpine AS base
+   FROM node:24.19.0-alpine AS base
    
    # Install dependencies only when needed
    FROM base AS deps
@@ -347,7 +353,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '24.19.0'
       - run: npm install
       - run: npm run build
       - name: Deploy to Vercel
@@ -365,7 +371,7 @@ jobs:
 ### Issue: Build fails in production
 
 **Check:**
-- Node.js version matches local environment
+- Node.js version is exactly `24.19.0` (pinned in `.nvmrc` and `package.json` `engines`)
 - All dependencies are in `package.json`
 - No missing environment variables
 - Build logs for specific errors
@@ -432,5 +438,5 @@ For deployment issues:
 
 ---
 
-**Last Updated**: 2024
+**Last Updated**: 2026
 

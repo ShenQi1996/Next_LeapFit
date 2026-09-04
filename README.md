@@ -17,9 +17,20 @@ A professional Next.js landing page for Secure Fit LLC, a respiratory fit testin
 
 Before you begin, ensure you have the following installed on your system:
 
-- **Node.js** (version 14.x or higher) - [Download Node.js](https://nodejs.org/)
-- **npm** (comes with Node.js) or **yarn** package manager
+- **Node.js** (**exact version `24.19.0`**) - [Download Node.js](https://nodejs.org/)
+- **npm** (version 10+ recommended, comes with Node.js) or **yarn** package manager
 - **Git** (for version control)
+
+### Recommended: Use nvm for Node version management
+
+This project is pinned to Node `24.19.0` via `.nvmrc` and `package.json` (`engines`), so using `nvm` helps avoid version mismatch issues.
+
+```bash
+nvm install 24.19.0
+nvm use 24.19.0
+node --version
+npm --version
+```
 
 To check if you have Node.js installed, run:
 ```bash
@@ -212,7 +223,7 @@ For deployment on a traditional server (AWS, DigitalOcean, etc.):
 
 1. **Create Dockerfile**:
    ```dockerfile
-   FROM node:18-alpine
+   FROM node:24.19.0-alpine
    
    WORKDIR /app
    
@@ -251,12 +262,14 @@ Next_LeapFit-main/
 │   └── store.js        # Redux store setup
 ├── .next/              # Build output (generated)
 ├── node_modules/       # Dependencies
-├── package.json        # Project dependencies and scripts
+├── .nvmrc              # Pinned Node.js version (24.19.0)
+├── package.json        # Project dependencies, scripts, and engines
 └── README.md          # This file
 ```
 
 ## Technologies Used
 
+- **Node.js 24.19.0** - Runtime (pinned via `.nvmrc` and `engines`)
 - **Next.js 14.2.5** - React framework with SSR/SSG
 - **React 18.3.1** - UI library
 - **Redux Toolkit** - State management
@@ -306,6 +319,24 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
+### Issue: Node version mismatch or unsupported engine
+
+**Symptoms**:
+- Install/build errors mentioning unsupported Node version
+- `npm` warnings related to `engines`
+
+**Solution**:
+```bash
+nvm use 24.19.0
+node --version
+npm --version
+```
+If Node `24.19.0` is not installed yet:
+```bash
+nvm install 24.19.0
+nvm use 24.19.0
+```
+
 ### Issue: Build fails
 
 **Solution**:
@@ -341,5 +372,5 @@ ISC
 
 ---
 
-**Last Updated**: 2024
+**Last Updated**: 2026
 

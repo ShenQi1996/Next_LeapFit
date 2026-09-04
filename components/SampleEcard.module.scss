@@ -1,0 +1,250 @@
+.preview {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.kicker {
+    display: inline-block;
+    margin: 0 0 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: #fff4d4;
+    color: #8a6a00;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.lead {
+    margin: 0 0 1.25rem;
+    max-width: 40rem;
+    color: #4a5560;
+    line-height: 1.55;
+    font-size: 0.98rem;
+}
+
+.cardWrap {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+    font-size: clamp(3.5rem, 12vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: rgba(0, 88, 137, 0.07);
+    transform: rotate(-18deg);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.4rem 1.75rem;
+    background: linear-gradient(135deg, #007E66 0%, #00B499 100%);
+    color: #fff;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    background-color: transparent;
+    background-image: url(../pages/images/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 1.55rem;
+}
+
+.cardBody {
+    position: relative;
+    z-index: 1;
+    padding: 1.25rem 1.75rem 1.75rem;
+}
+
+.titleRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.65rem 1rem;
+    margin-bottom: 0.9rem;
+}
+
+.titleRow h4 {
+    margin: 0;
+    color: #005889;
+    font-size: 1.35rem;
+}
+
+.tagline {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.pillTeal,
+.pillBlue {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.pillTeal {
+    background: #e8f8f4;
+    color: #007E66;
+}
+
+.pillBlue {
+    background: #e8f2f8;
+    color: #005889;
+}
+
+.panel {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.75rem;
+    padding: 1.4rem;
+    border: 1px solid rgba(0, 88, 137, 0.15);
+    border-radius: 12px;
+}
+
+.qrBlock {
+    text-align: center;
+}
+
+.qrLabel {
+    margin: 0 0 0.75rem;
+    color: #005889;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.qrImage {
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgba(0, 126, 102, 0.35);
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 1.15rem;
+    background: #fff;
+}
+
+.field {
+    margin-bottom: 0.9rem;
+    text-align: left;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #005889;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.fieldValue {
+    padding: 0.55rem 0.85rem;
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 88, 137, 0.15);
+    border-radius: 6px;
+    color: #444;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+}
+
+.details {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.details th,
+.details td {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 88, 137, 0.08);
+}
+
+.details th {
+    color: #005889;
+    font-weight: 700;
+    text-align: left;
+}
+
+.details td {
+    color: #444;
+    text-align: right;
+    font-weight: 500;
+}
+
+.pass {
+    color: #28a745;
+    font-weight: 800;
+}
+
+.helpBox {
+    margin-top: 1.25rem;
+    padding: 1.25rem 1.4rem;
+    background: #e8f8f4;
+    border: 1px solid rgba(0, 126, 102, 0.2);
+    border-radius: 12px;
+}
+
+.helpBox h3 {
+    margin: 0 0 0.45rem;
+    color: #005889;
+    font-size: 1.15rem;
+}
+
+.helpBox p {
+    margin: 0;
+    color: #334;
+    line-height: 1.55;
+    font-size: 0.95rem;
+}
+
+.helpBox a {
+    color: #007E66;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 720px) {
+    .panel {
+        grid-template-columns: 1fr;
+    }
+
+    .qrBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .field {
+        width: 100%;
+        max-width: 260px;
+    }
+}

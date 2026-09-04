@@ -1,13 +1,48 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import image2 from './images/images2.svg';
 import image1 from './images/images1.svg';
 import ChatWidget from '../components/ChatWidget';
+import SampleEcard from '../components/SampleEcard';
 import styles from "./style/index.module.scss";
 
 const BROOKLYN_URL = 'https://next-leap-fit-bk-2026.vercel.app/';
 
 const HomePage = () => {
+  const [ecardOpen, setEcardOpen] = useState(false);
+  const ecardRef = useRef(null);
+
+  const openEcard = () => {
+    setEcardOpen(true);
+    window.history.replaceState(null, '', '#sample-ecard');
+  };
+
+  const toggleEcard = () => {
+    if (ecardOpen) {
+      setEcardOpen(false);
+      if (window.location.hash === '#sample-ecard') {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+      return;
+    }
+    openEcard();
+  };
+
+  useEffect(() => {
+    if (window.location.hash === '#sample-ecard') {
+      setEcardOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!ecardOpen) {
+      return undefined;
+    }
+    const timer = window.setTimeout(() => {
+      ecardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [ecardOpen]);
 
   return (
     <div className={styles.Homepage}>
@@ -85,31 +120,65 @@ const HomePage = () => {
             </div>
           </div>
           
+          <section className={styles.ecardSection} aria-label="Sample results e-card">
+            <p className={styles.ecardIntro}>
+              OSHA-compliant respiratory fit testing for workplaces, schools, and other locations.
+              After your test, we email a documented e-card and keep it in our records system for up to 3 years.
+            </p>
+            <ul className={styles.ecardFacts}>
+              <li><strong>$75</strong> per fit test</li>
+              <li>Records on file <strong>3 years</strong></li>
+              <li>Fast e-card lookup</li>
+            </ul>
+            <button
+              type="button"
+              className={styles.ecardButton}
+              onClick={toggleEcard}
+              aria-expanded={ecardOpen}
+              aria-controls="sample-ecard"
+            >
+              <span className={styles.ecardButtonIcon} aria-hidden="true" />
+              {ecardOpen ? 'Hide sample e-card' : 'View sample e-card'}
+            </button>
+            <div
+              id="sample-ecard"
+              ref={ecardRef}
+              className={`${styles.ecardPanel} ${ecardOpen ? styles.ecardPanelOpen : ''}`}
+              inert={ecardOpen ? undefined : ''}
+              aria-hidden={!ecardOpen}
+            >
+              <div className={styles.ecardPanelInner}>
+                <SampleEcard />
+              </div>
+            </div>
+          </section>
+
           <div className={styles.ctaSection}>
             <div className={styles.ctaButtons}>
-              <a 
-                className={styles.ctaButton} 
-                href='https://calendly.com/Securefit2024' 
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Schedule Fit Test
-              </a>
-              <a
-                className={styles.ctaButtonSecondary}
-                href={BROOKLYN_URL}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Brooklyn Location
-              </a>
+              <div className={styles.ctaButtonRow}>
+                <a 
+                  className={styles.ctaButton} 
+                  href='https://calendly.com/Securefit2024' 
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Schedule Fit Test
+                </a>
+                <a
+                  className={styles.ctaButtonSecondary}
+                  href={BROOKLYN_URL}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Brooklyn Location
+                </a>
+              </div>
             </div>
             <p className={styles.ctaNote}>Quick and convenient appointments</p>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
       <section className={styles.features}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Our Services</h2>
@@ -133,27 +202,32 @@ const HomePage = () => {
             <p className={styles.featuresDescription}>
               Ensure your respiratory protection equipment fits perfectly with our professional fit testing services. 
               Our certified technicians provide accurate, reliable testing in compliance with OSHA standards at convenient 
-              locations throughout New York. We deliver comprehensive fit testing reports to help maintain workplace safety compliance.
+              locations throughout New York. Every result goes into our records system and stays on file for up to 3 years. We work with schools and other locations, so if you need your e-card again we can look it up quickly and send it documented — by email or as a PDF.
             </p>
             <ul className={styles.featuresList}>
               <li>OSHA-compliant testing protocols</li>
               <li>Comprehensive fit testing reports</li>
+              <li>Records system for schools and other locations — documented e-cards on file 3 years, looked up fast</li>
               <li>Multiple testing locations</li>
               <li>Flexible scheduling options</li>
             </ul>
           </div>
-          
-          <div className={styles.featuresImage}>
-            <Image className={styles.featureImg} src={image1} alt='Fit testing equipment' />  
+
+          <div className={styles.featuresVisual}>
+            <div className={styles.featuresImage}>
+              <Image className={styles.featureImg} src={image1} alt='Fit testing equipment' />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className={styles.benefits}>
+      <section className={styles.benefits} id="why-pick-us">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Why Choose Secure Fit LLC?</h2>
+          <h2 className={styles.sectionTitle}>Why pick us?</h2>
           <div className={styles.titleUnderline}></div>
+          <p className={styles.sectionLead}>
+            OSHA-compliant testing, a records system that keeps your e-card on file for up to 3 years, and locations that come to you — including schools and other worksites.
+          </p>
         </div>
         <div className={styles.benefitsGrid}>
           <div className={styles.benefitCard}>
@@ -168,7 +242,14 @@ const HomePage = () => {
               <div className={styles.benefitIcon}>📍</div>
             </div>
             <h4>Convenient Locations</h4>
-            <p>Multiple pop-up stations throughout New York for easy access, minimizing travel time and disruption to your schedule.</p>
+            <p>Pop-up stations throughout New York, including schools and other worksites, so teams can get tested without a long trip.</p>
+          </div>
+          <div className={styles.benefitCard}>
+            <div className={styles.benefitIconWrapper}>
+              <div className={styles.benefitIcon}>📁</div>
+            </div>
+            <h4>Records in Our System</h4>
+            <p>Every fit-test result is stored in our records software for up to 3 years. Schools and other locations we work with can get a documented e-card back quickly — resent by email or sent as a PDF.</p>
           </div>
           <div className={styles.benefitCard}>
             <div className={styles.benefitIconWrapper}>
@@ -201,8 +282,18 @@ const HomePage = () => {
             <h4>Services</h4>
             <ul>
               <li>Respiratory Fit Testing</li>
+              <li>
+                <a href="#sample-ecard" onClick={(event) => {
+                  event.preventDefault();
+                  openEcard();
+                }}>
+                  Sample results e-card
+                </a>
+              </li>
               <li>OSHA Compliance</li>
-              <li>Safety Consultation</li>
+              <li>
+                <a href="#why-pick-us">Why pick us?</a>
+              </li>
             </ul>
           </div>
           <div className={styles.footerSection}>

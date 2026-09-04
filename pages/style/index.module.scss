@@ -36,6 +36,8 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 .navLogo {
@@ -67,10 +69,12 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
+    font-family: inherit;
     color: #007E66;
     background: white;
     border: 2px solid #007E66;
     border-radius: 6px;
+    cursor: pointer;
     transition: all 0.3s ease;
     
     &:hover {
@@ -254,8 +258,114 @@
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
+.ecardSection {
+    width: 100%;
+    max-width: 600px;
+    margin: 2.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.ecardIntro {
+    margin: 0 0 0.85rem;
+    text-align: center;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.ecardFacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0 0 1.1rem;
+    padding: 0;
+}
+
+.ecardFacts li {
+    margin: 0;
+    padding: 0.35rem 0.8rem;
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 126, 102, 0.18);
+    border-radius: 999px;
+    color: #334;
+    font-size: 0.82rem;
+}
+
+.ecardFacts strong {
+    color: #005889;
+    font-weight: 700;
+}
+
+.ecardButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0.15rem 0 0.25rem;
+    padding: 0.95rem 2.15rem;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    background: linear-gradient(135deg, #005889 0%, #007E66 100%);
+    border: 2px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    box-shadow: 0 8px 22px rgba(0, 88, 137, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 88, 137, 0.42);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &[aria-expanded='true'] {
+        background: #fff;
+        color: #005889;
+        border-color: #005889;
+        box-shadow: 0 4px 14px rgba(0, 88, 137, 0.12);
+    }
+}
+
+.ecardButtonIcon {
+    width: 1.1rem;
+    height: 1.3rem;
+    border: 2px solid currentColor;
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        right: 3px;
+        height: 2px;
+        background: currentColor;
+    }
+
+    &::before {
+        top: 5px;
+    }
+
+    &::after {
+        top: 9px;
+    }
+}
+
 .ctaSection {
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -263,6 +373,13 @@
 }
 
 .ctaButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ctaButtonRow {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -302,6 +419,7 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 1.05rem;
+    font-family: inherit;
     color: #007E66;
     background: white;
     border: 2px solid #007E66;
@@ -351,9 +469,17 @@
     border-radius: 2px;
 }
 
+.sectionLead {
+    max-width: 38rem;
+    margin: 1.25rem auto 0;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
 // Features Section
 .features {
-    padding: 6rem 1rem;
+    padding: 6rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
     background: white;
@@ -369,6 +495,36 @@
 .featuresText {
     text-align: left;
     max-width: 600px;
+    width: 100%;
+}
+
+.featuresVisual {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+}
+
+.ecardPanel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease, margin 0.35s ease;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-margin-top: 6rem;
+    text-align: left;
+}
+
+.ecardPanelOpen {
+    grid-template-rows: 1fr;
+    margin-bottom: 2rem;
+}
+
+.ecardPanelInner {
+    overflow: hidden;
 }
 
 .featuresTitle {
@@ -465,6 +621,7 @@
     max-width: 1200px;
     margin: 0 auto;
     background: #f8f9fa;
+    scroll-margin-top: 6rem;
 }
 
 .benefitsGrid {
@@ -676,17 +833,17 @@
     }
     
     .featuresContent {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
+        width: 100%;
     }
     
     .featuresText {
-        flex: 1;
+        max-width: none;
     }
     
-    .featuresImage {
-        flex: 1;
-        display: flex;
+    .featuresVisual {
         justify-content: center;
     }
     
@@ -705,7 +862,7 @@
     }
     
     .benefitsGrid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     
     .features {

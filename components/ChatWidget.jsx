@@ -10,7 +10,7 @@ const Lottie = dynamic(() => import('lottie-react').then((mod) => mod.Lottie), {
 const WELCOME_MESSAGE = {
   role: 'assistant',
   content:
-    "Hey, welcome in! I can help with fit tests, pricing, masks, or booking. What can I do for you?",
+    "Hey, welcome in! I can help with fit tests, pricing, masks, booking, or a lost e-card. What can I do for you?",
 };
 
 const MAX_DAILY_QUESTIONS = 30;

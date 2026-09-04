@@ -54,7 +54,6 @@ npm --version
    This will install all required packages including:
    - Next.js 14.2.5
    - React 18.3.1
-   - Redux Toolkit
    - Sass for styling
 
 3. **Verify installation**:
@@ -248,23 +247,15 @@ For deployment on a traditional server (AWS, DigitalOcean, etc.):
 
 ```
 Next_LeapFit-main/
-├── components/          # Reusable React components
-│   └── withAuth.jsx    # Authentication wrapper
-├── pages/              # Next.js pages (routing)
-│   ├── _app.jsx        # App wrapper with Redux
+├── pages/
+│   ├── _app.jsx        # App wrapper
 │   ├── index.jsx       # Landing page
-│   ├── login.jsx       # Login page
-│   ├── about.jsx       # About page
-│   ├── api/            # API routes
 │   ├── images/         # Image assets
 │   └── style/          # SCSS stylesheets
-├── store/              # Redux store configuration
-│   └── store.js        # Redux store setup
-├── .next/              # Build output (generated)
-├── node_modules/       # Dependencies
 ├── .nvmrc              # Pinned Node.js version (24.19.0)
 ├── package.json        # Project dependencies, scripts, and engines
-└── README.md          # This file
+├── DEPLOYMENT.md       # Production deployment guide
+└── README.md           # This file
 ```
 
 ## Technologies Used
@@ -272,26 +263,13 @@ Next_LeapFit-main/
 - **Node.js 24.19.0** - Runtime (pinned via `.nvmrc` and `engines`)
 - **Next.js 14.2.5** - React framework with SSR/SSG
 - **React 18.3.1** - UI library
-- **Redux Toolkit** - State management
 - **Sass** - CSS preprocessor
-- **next-redux-wrapper** - Redux integration for Next.js
 
 ## Environment Variables
 
-If you need to configure environment variables:
+This landing page does not require any environment variables yet.
 
-1. **Create `.env.local`** file in the root directory:
-   ```env
-   # Example environment variables
-   NEXT_PUBLIC_API_URL=https://api.example.com
-   ```
-
-2. **Access in code**:
-   ```javascript
-   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-   ```
-
-3. **Important**: Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
+When the chat bot is added, the OpenAI API key will go in `.env.local` (never in frontend code).
 
 ## Troubleshooting
 
@@ -355,7 +333,6 @@ nvm use 24.19.0
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev/)
-- [Redux Toolkit Documentation](https://redux-toolkit.js.org/)
 - [Sass Documentation](https://sass-lang.com/documentation)
 
 ## Support

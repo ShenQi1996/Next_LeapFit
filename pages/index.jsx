@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import image2 from '../pages/images/images2.svg';
-import image1 from '../pages/images/images1.svg';
+import image2 from './images/images2.svg';
+import image1 from './images/images1.svg';
 import styles from "./style/index.module.scss";
 
 

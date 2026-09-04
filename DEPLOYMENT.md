@@ -8,7 +8,7 @@ This guide provides detailed instructions for deploying the Secure Fit LLC landi
 - [ ] All code is committed to version control
 - [ ] Application builds successfully (`npm run build`)
 - [ ] Production build runs locally (`npm start`)
-- [ ] All environment variables are documented
+- [ ] Environment variables are documented (none required for the landing page yet)
 - [ ] Domain name is configured (if applicable)
 - [ ] SSL certificate is set up (for HTTPS)
 
@@ -312,24 +312,9 @@ netlify deploy --prod
 
 ## Environment Variables
 
-If your application uses environment variables:
+This landing page does not require environment variables yet.
 
-### For Vercel:
-1. Go to Project Settings → Environment Variables
-2. Add variables for:
-   - Production
-   - Preview
-   - Development
-
-### For Netlify:
-1. Go to Site Settings → Build & Deploy → Environment
-2. Add environment variables
-
-### For Traditional Server:
-Create `.env.production` file:
-```env
-NEXT_PUBLIC_API_URL=https://api.example.com
-```
+When the chat bot is added, set `OPENAI_API_KEY` in Vercel/Netlify (or `.env.local` locally). Do not prefix it with `NEXT_PUBLIC_`.
 
 ---
 

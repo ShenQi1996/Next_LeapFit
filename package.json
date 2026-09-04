@@ -1,8 +1,7 @@
 {
   "name": "LeapFit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Secure Fit LLC landing page for respiratory fit testing services",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,12 +16,9 @@
     "npm": ">=10"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.6",
     "next": "^14.2.5",
-    "next-redux-wrapper": "^8.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-redux": "^9.1.2",
     "sass": "^1.77.8"
   }
 }

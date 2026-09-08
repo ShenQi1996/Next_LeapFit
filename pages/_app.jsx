@@ -6,10 +6,10 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Secure Fit llc | Respiratory Fit Testing</title>
+        <title>Secure Fit LLC | Respiratory Fit Testing</title>
         <meta
           name="description"
-          content="Professional respiratory fit testing services in New York. OSHA-compliant testing, $75 per test, convenient pop-up stations."
+          content="OSHA-compliant respiratory fit testing in New York. $75 per test, documented e-cards, and records kept for up to 3 years."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

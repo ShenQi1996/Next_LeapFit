@@ -1,0 +1,265 @@
+$navy: #0B2D4A;
+$teal: #14B8A6;
+$teal-dark: #0F9A8A;
+$aqua: #A7E3E0;
+$white: #F7FAFC;
+$ink: #0B2D4A;
+$muted: #4d6273;
+$font-heading: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+$font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+
+.main {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 4.5rem;
+}
+
+.hero {
+    margin-bottom: 2.25rem;
+    padding: 2rem 1.75rem;
+    background: $navy;
+    color: #fff;
+    border-radius: 16px;
+}
+
+.kicker {
+    margin: 0 0 0.55rem;
+    color: $aqua;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    margin: 0;
+    font-family: $font-heading;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+}
+
+.lead {
+    margin: 0.85rem 0 0;
+    max-width: 46rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.meta {
+    margin: 1rem 0 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.5;
+
+    a {
+        color: $aqua;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
+
+.note {
+    margin: 0 0 2rem;
+    padding: 1rem 1.15rem;
+    background: rgba(167, 227, 224, 0.28);
+    border-left: 4px solid $teal;
+    border-radius: 0 10px 10px 0;
+    color: $ink;
+    line-height: 1.55;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.policyCard,
+.contactCard {
+    display: block;
+    padding: 1.25rem 1.3rem;
+    background: #fff;
+    border: 1px solid rgba(11, 45, 74, 0.1);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 8px 24px rgba(11, 45, 74, 0.04);
+}
+
+.policyCard:hover,
+.policyCard:focus-visible {
+    border-color: $teal;
+    box-shadow: 0 10px 28px rgba(20, 184, 166, 0.12);
+}
+
+.policyNumber {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: $teal-dark;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.policyCard h2,
+.contactCard h2 {
+    margin: 0 0 0.45rem;
+    font-family: $font-heading;
+    font-size: 1.12rem;
+    color: $navy;
+}
+
+.policyCard p,
+.contactCard p {
+    margin: 0;
+    color: $muted;
+    line-height: 1.55;
+}
+
+.contactGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.contactCard a {
+    color: $teal-dark;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.contactCard a:hover,
+.contactCard a:focus-visible {
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.15rem;
+}
+
+.crumbs {
+    margin: 0 0 1rem;
+    color: $muted;
+    font-size: 0.92rem;
+}
+
+.crumbs a {
+    color: $teal-dark;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.crumbs a:hover,
+.crumbs a:focus-visible {
+    text-decoration: underline;
+}
+
+.policyHero {
+    margin-bottom: 1.75rem;
+}
+
+.toc {
+    margin: 0 0 2rem;
+    padding: 1.15rem 1.25rem;
+    background: #fff;
+    border: 1px solid rgba(11, 45, 74, 0.1);
+    border-radius: 14px;
+}
+
+.toc h2 {
+    margin: 0 0 0.7rem;
+    font-family: $font-heading;
+    font-size: 1rem;
+}
+
+.toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: $ink;
+    line-height: 1.7;
+}
+
+.toc a {
+    color: $navy;
+    text-decoration: none;
+}
+
+.toc a:hover,
+.toc a:focus-visible {
+    color: $teal-dark;
+    text-decoration: underline;
+}
+
+.article h2 {
+    margin: 2rem 0 0.7rem;
+    font-family: $font-heading;
+    font-size: 1.25rem;
+    color: $navy;
+}
+
+.article p {
+    margin: 0 0 0.9rem;
+    color: $ink;
+    line-height: 1.7;
+    max-width: 46rem;
+}
+
+.neighbors {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(11, 45, 74, 0.1);
+}
+
+.neighbors a {
+    color: $teal-dark;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.neighbors a:hover,
+.neighbors a:focus-visible {
+    text-decoration: underline;
+}
+
+.printHint {
+    margin-top: 2rem;
+    color: $muted;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 800px) {
+    .grid,
+    .contactGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .neighbors {
+        flex-direction: column;
+    }
+}
+
+@media print {
+    .hero {
+        background: #fff;
+        color: $navy;
+        border: 1px solid $navy;
+    }
+
+    .lead,
+    .meta {
+        color: $ink;
+    }
+}

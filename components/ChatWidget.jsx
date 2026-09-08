@@ -26,9 +26,10 @@ const ALLOWED_LINK_HOSTS = new Set([
   'www.calendly.com',
   'next-leap-fit.vercel.app',
   'next-leap-fit-bk-2026.vercel.app',
+  '2026-fit-testing-results-e-card.vercel.app',
 ]);
 
-const ALLOWED_EMAILS = new Set(['securefit2024@gmail.com']);
+const ALLOWED_EMAILS = new Set(['securefit2024@gmail.com', 'securefit.bk@gmail.com']);
 
 const utcDay = () => new Date().toISOString().slice(0, 10);
 

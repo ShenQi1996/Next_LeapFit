@@ -1,13 +1,13 @@
 import React from 'react';
+import { CONTACT_EMAIL, MANHATTAN_CALENDLY, RESEND_ECARD_URL } from '../lib/site';
 import styles from './SampleEcard.module.scss';
 
-const BOOKING_URL = 'https://calendly.com/Securefit2024';
-const QR_IMAGE = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(BOOKING_URL)}`;
+const QR_IMAGE = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(MANHATTAN_CALENDLY)}`;
 
 const SAMPLE_DETAILS = [
   { label: 'Test Location', value: 'Manhattan' },
   { label: 'Issue Date', value: '09/04/2026' },
-  { label: 'Expiration Date', value: '09/04/2027' },
+  { label: 'Next routine fit test due', value: '09/04/2027' },
   { label: 'Fit Test Type', value: 'Qualitative' },
   { label: 'Protocol', value: 'OSHA 29 CFR 1910.134 App. A' },
   { label: 'Respirator MFG', value: '3M' },
@@ -49,7 +49,7 @@ const SampleEcard = () => {
             </div>
             <div className={styles.pills}>
               <span className={styles.pillTeal}>OSHA-Aligned Protocols</span>
-              <span className={styles.pillBlue}>Certified Technicians</span>
+              <span className={styles.pillBlue}>Experienced technicians</span>
             </div>
             <div className={styles.panel}>
               <div className={styles.qrBlock}>
@@ -95,7 +95,7 @@ const SampleEcard = () => {
           <p className={styles.legalBanner}>Sample only — not a valid fit-test record</p>
           <ul className={styles.legalClaims}>
             <li>OSHA 29 CFR 1910.134 App. A protocols.</li>
-            <li>Pass applies only to the listed respirator until expiration.</li>
+            <li>Pass applies only to the listed respirator. A next-test date is not a guarantee of protection until then.</li>
             <li>Not a medical clearance. Employer remains responsible for its program.</li>
           </ul>
           <p className={styles.legalFine}>
@@ -107,11 +107,13 @@ const SampleEcard = () => {
       <div className={styles.helpBox}>
         <h3>Lost your e-card?</h3>
         <p>
-          We keep every fit-test result in our records system for up to 3 years. We work with
-          schools and other locations, so we can look yours up quickly and send it documented.
-          Email us at{' '}
-          <a href="mailto:SecureFit2024@gmail.com">SecureFit2024@gmail.com</a>
-          {' '}with your name and test date. We can resend the e-card, and we can send a PDF too.
+          We keep every fit-test result in our records system for up to 3 years. Look it up with
+          the name, date of birth, and email from your original test.{' '}
+          <a href={RESEND_ECARD_URL} target="_blank" rel="noopener noreferrer">
+            Resend your e-card
+          </a>
+          . If you need a PDF or the lookup does not match, email{' '}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
       </div>
     </div>

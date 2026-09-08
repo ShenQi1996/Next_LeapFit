@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 0.75rem;
+    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
 }
 
 .panel {
@@ -22,7 +23,7 @@
 }
 
 .header {
-    background: #007E66;
+    background: #0B2D4A;
     color: #fff;
     padding: 0.9rem 1rem;
     display: flex;
@@ -33,6 +34,7 @@
 
 .title {
     margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
     font-weight: 700;
     font-size: 1rem;
 }
@@ -84,7 +86,7 @@
 }
 
 .botLink {
-    color: #005889;
+    color: #0B2D4A;
     background: #e7f3f8;
     padding: 0.12rem 0.28rem;
     border-radius: 4px;
@@ -93,7 +95,7 @@
 
     &:hover {
         color: #fff;
-        background: #007E66;
+        background: #14B8A6;
         text-decoration-color: #fff;
     }
 }
@@ -114,7 +116,7 @@
 
 .userBubble {
     align-self: flex-end;
-    background: #007E66;
+    background: #14B8A6;
     color: #fff;
 }
 
@@ -128,7 +130,7 @@
 .limitNote {
     margin: 0;
     padding: 0 1rem 0.5rem;
-    color: #005889;
+    color: #0B2D4A;
     font-size: 0.8rem;
     line-height: 1.4;
 }
@@ -150,13 +152,13 @@
     outline: none;
 
     &:focus {
-        border-color: #007E66;
+        border-color: #14B8A6;
     }
 }
 
 .sendButton,
 .toggle {
-    background: #007E66;
+    background: #14B8A6;
     color: #fff;
     border: 0;
     font-weight: 700;
@@ -197,7 +199,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #007E66;
+    background: #14B8A6;
     color: #fff;
     font-size: 1rem;
     line-height: 20px;

@@ -1,5 +1,14 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(230, 230, 226);
+    background-color: #F7FAFC;
+    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

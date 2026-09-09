@@ -193,6 +193,7 @@ const HomePage = () => {
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>Respiratory Fit Testing | New York</p>
             <h1>Fit Today. <span>Healthier Tomorrows.</span></h1>
+            <p className={styles.heroMission}>Same mission. A brighter tomorrow.</p>
             <p className={styles.heroLead}>
               OSHA-compliant respiratory fit testing for individuals, workplaces, and schools.
               After your test, we email a documented e-card you can scan to verify, and we keep it
@@ -211,6 +212,7 @@ const HomePage = () => {
                 Verify an e-card
               </a>
             </div>
+            <p className={styles.heroMotto}>Fit. Test. Breathe. Confidently.</p>
             <ul className={styles.trustBar}>
               <li>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.8 7.8 7 8.8 4.2-1 7-4.6 7-8.8V6l-7-3Z" /><path d="m9 12 2 2 4-4" /></svg>
@@ -233,10 +235,6 @@ const HomePage = () => {
                 Scan to verify
               </li>
             </ul>
-          </div>
-          <div className={styles.heroSide}>
-            <p className={styles.heroMotto}>Fit. Test. Breathe. Confidently.</p>
-            <p className={styles.heroMission}>Same mission. A brighter tomorrow.</p>
           </div>
         </div>
       </section>

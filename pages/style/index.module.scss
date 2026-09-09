@@ -164,6 +164,10 @@ $header-height: 6rem;
     border-bottom-color: $teal !important;
 }
 
+.navMobileOnly {
+    display: none;
+}
+
 .navActions {
     grid-area: actions;
     display: flex;
@@ -845,6 +849,12 @@ $header-height: 6rem;
     }
 }
 
+.verifyBanner {
+    @extend .resendBanner;
+    background: rgba(20, 184, 166, 0.08);
+    border-color: rgba(20, 184, 166, 0.45);
+}
+
 .footer {
     background: $navy;
     color: #fff;
@@ -994,6 +1004,10 @@ $header-height: 6rem;
         display: flex;
     }
 
+    .navMobileOnly {
+        display: inline-flex;
+    }
+
     .navGhost {
         padding: 0.42rem 0.65rem;
         font-size: 0.75rem;
@@ -1021,7 +1035,7 @@ $header-height: 6rem;
 
 @media screen and (min-width: 768px) {
     .trustBar {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .serviceGrid,
@@ -1038,7 +1052,8 @@ $header-height: 6rem;
         align-items: start;
     }
 
-    .resendBanner {
+    .resendBanner,
+    .verifyBanner {
         grid-template-columns: 1fr auto;
         align-items: center;
         padding: 2.2rem;
@@ -1101,7 +1116,7 @@ $header-height: 6rem;
     }
 
     .trustBar {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 
     .processStep:not(:last-child)::after {

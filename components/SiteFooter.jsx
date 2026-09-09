@@ -8,6 +8,7 @@ import {
   CONTACT_PHONE_HREF,
   MANHATTAN_CALENDLY,
   RESEND_ECARD_URL,
+  VERIFY_ECARD_URL,
   SERVICE_AREA,
 } from '../lib/site';
 import styles from '../pages/style/index.module.scss';
@@ -41,6 +42,11 @@ const SiteFooter = ({ home = false, onSampleEcard }) => {
               </a>
             </li>
           ) : null}
+          <li>
+            <a href={VERIFY_ECARD_URL} target="_blank" rel="noopener noreferrer">
+              Verify e-card
+            </a>
+          </li>
           <li>
             <a href={RESEND_ECARD_URL} target="_blank" rel="noopener noreferrer">
               Resend e-card
@@ -86,7 +92,7 @@ const SiteFooter = ({ home = false, onSampleEcard }) => {
             A next-test date is not a guarantee of protection until then. Three years of record storage is not a three-year testing interval.
           </li>
           <li>A fit-test record is not a medical clearance. The employer remains responsible for its respiratory-protection program.</li>
-          <li>The sample e-card is for demonstration only and is not a valid fit-test record.</li>
+          <li>The sample e-card is for demonstration only and is not a valid fit-test record. Scan a real card to verify.</li>
         </ul>
       </div>
       <div className={styles.footerBottom}>

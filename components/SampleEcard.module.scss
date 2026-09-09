@@ -1,5 +1,5 @@
 .preview {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: left;
     font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
@@ -29,9 +29,9 @@
 .cardWrap {
     position: relative;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgba(11, 45, 74, 0.08);
     user-select: none;
 }
 
@@ -201,8 +201,52 @@
     grid-template-columns: 200px 1fr;
     gap: 1.75rem;
     padding: 1.4rem;
-    border: 1px solid rgba(0, 88, 137, 0.15);
+    border: 1px solid rgba(11, 45, 74, 0.10);
     border-radius: 12px;
+}
+
+.detailsColumn {
+    min-width: 0;
+}
+
+.confirm {
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(11, 45, 74, 0.10);
+}
+
+.confirmLabel {
+    margin: 0;
+    color: #0B2D4A;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.confirmCode {
+    margin: 0.25rem 0 0.5rem;
+    color: #0F9A8A;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+}
+
+.followUp {
+    color: #0F9A8A;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: underline;
+    }
+}
+
+.disclaimer {
+    margin: 1.15rem 0 0;
+    color: #7a8a99;
+    font-size: 0.75rem;
+    line-height: 1.5;
 }
 
 .qrBlock {
@@ -219,7 +263,7 @@
 .qrImage {
     width: 150px;
     height: 150px;
-    border: 2px solid rgba(0, 126, 102, 0.35);
+    border: 2px solid rgba(20, 184, 166, 0.45);
     border-radius: 8px;
     display: block;
     margin: 0 auto 1.15rem;
@@ -241,10 +285,10 @@
 
 .fieldValue {
     padding: 0.55rem 0.85rem;
-    background: #f8f9fa;
-    border: 1px solid rgba(0, 88, 137, 0.15);
+    background: #F7FAFC;
+    border: 1px solid rgba(11, 45, 74, 0.10);
     border-radius: 6px;
-    color: #444;
+    color: #4d6273;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
 }
@@ -268,13 +312,13 @@
 }
 
 .details td {
-    color: #444;
+    color: #4d6273;
     text-align: right;
     font-weight: 500;
 }
 
 .pass {
-    color: #28a745;
+    color: #0F9A8A;
     font-weight: 800;
 }
 
@@ -313,6 +357,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .detailsColumn {
+        width: 100%;
     }
 
     .field {

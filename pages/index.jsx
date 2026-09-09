@@ -7,10 +7,19 @@ import SiteHeader from '../components/SiteHeader';
 import heroPhoto from './images/hero-clinician.jpg';
 import maskHands from './images/mask-hands.jpg';
 import nycSkyline from './images/nyc-skyline.jpg';
-import { BROOKLYN_CALENDLY, MANHATTAN_CALENDLY, RESEND_ECARD_URL } from '../lib/site';
+import { BROOKLYN_CALENDLY, MANHATTAN_CALENDLY, RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
 import styles from "./style/index.module.scss";
 
 const SERVICES = [
+  {
+    id: 'verify',
+    title: 'Verify an E-Card',
+    description: 'Scan the QR or enter the confirm code. Anyone can check that a Secure Fit record is authentic.',
+    href: VERIFY_ECARD_URL,
+    linkLabel: 'Verify an e-card',
+    icon: 'verify',
+    external: true,
+  },
   {
     id: 'fit-testing',
     title: 'Professional Respiratory Fit Testing',
@@ -54,18 +63,17 @@ const SERVICES = [
   {
     id: 'ecards',
     title: 'Documented E-Cards & 3-Year Records',
-    description: 'Official fit-test e-cards emailed after your test and kept on file.',
-    href: RESEND_ECARD_URL,
-    linkLabel: 'Resend a lost e-card',
+    description: 'Official fit-test e-cards emailed after your test, kept on file, and scannable to verify.',
+    href: '#sample-ecard',
+    linkLabel: 'See a sample e-card',
     icon: 'card',
-    external: true,
   },
 ];
 
 const STEPS = [
   { number: '1', title: 'Schedule', description: 'Book a Manhattan or Brooklyn appointment online.' },
   { number: '2', title: 'Test', description: 'Trained specialists perform an OSHA-compliant fit test.' },
-  { number: '3', title: 'Get Your E-Card', description: 'We email your official e-card and keep it on file.' },
+  { number: '3', title: 'Get Your E-Card', description: 'We email your official e-card. Scan the QR to verify it anytime.' },
   { number: '4', title: 'Breathe Confidently', description: 'You leave with documentation for the respirator that was tested.' },
 ];
 
@@ -117,6 +125,12 @@ const ServiceIcon = ({ name }) => {
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="5" y="4" width="14" height="16" rx="2" />
         <path d="M8 9h8M8 13h8M8 17h5" />
+      </svg>
+    ),
+    verify: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="m8 12 2.5 2.5L16 9" />
       </svg>
     ),
   };
@@ -181,7 +195,8 @@ const HomePage = () => {
             <h1>Fit Today. <span>Healthier Tomorrows.</span></h1>
             <p className={styles.heroLead}>
               OSHA-compliant respiratory fit testing for individuals, workplaces, and schools.
-              After your test, we email a documented e-card and keep it on file for up to 3 years.
+              After your test, we email a documented e-card you can scan to verify, and we keep it
+              on file for up to 3 years.
             </p>
             <div className={styles.heroButtons}>
               <a className={styles.ctaButton} href="#schedule">
@@ -189,11 +204,11 @@ const HomePage = () => {
               </a>
               <a
                 className={styles.ctaButtonGhost}
-                href={RESEND_ECARD_URL}
+                href={VERIFY_ECARD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Lost your e-card?
+                Verify an e-card
               </a>
             </div>
             <ul className={styles.trustBar}>
@@ -213,6 +228,10 @@ const HomePage = () => {
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2" /><path d="M8 9h8M8 13h8M8 17h5" /></svg>
                 Fast E-Cards
               </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="m8 12 2.5 2.5L16 9" /></svg>
+                Scan to verify
+              </li>
             </ul>
           </div>
           <div className={styles.heroSide}>
@@ -220,6 +239,24 @@ const HomePage = () => {
             <p className={styles.heroMission}>Same mission. A brighter tomorrow.</p>
           </div>
         </div>
+      </section>
+
+      <section className={styles.verifyBanner} id="verify-ecard">
+        <div>
+          <h2>Verify an e-card</h2>
+          <p>
+            Scan the QR on a Secure Fit e-card or enter the confirm code. We show whether the
+            record is on file, still valid, expired, or did not pass — without a public name search.
+          </p>
+        </div>
+        <a
+          className={styles.ctaButton}
+          href={VERIFY_ECARD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Verify an e-card
+        </a>
       </section>
 
       <section className={styles.resendBanner} id="lost-ecard">
@@ -257,6 +294,12 @@ const HomePage = () => {
               <p>{service.description}</p>
               <a
                 href={service.href}
+                onClick={(event) => {
+                  if (service.href === '#sample-ecard') {
+                    event.preventDefault();
+                    openEcard();
+                  }
+                }}
                 {...(service.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               >
                 {service.linkLabel} →
@@ -280,11 +323,11 @@ const HomePage = () => {
               {step.number === '3' && (
                 <a
                   className={styles.processLink}
-                  href={RESEND_ECARD_URL}
+                  href={VERIFY_ECARD_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Lost your e-card? Resend it here
+                  Verify an e-card
                 </a>
               )}
             </li>
@@ -299,6 +342,7 @@ const HomePage = () => {
           <ul>
             <li>OSHA-compliant testing protocols</li>
             <li>Documented e-card emailed after your test</li>
+            <li>Scan the QR to verify the record</li>
             <li>Records kept on file for up to 3 years</li>
             <li>Manhattan and Brooklyn appointments</li>
             <li>No hidden fees</li>
@@ -332,6 +376,7 @@ const HomePage = () => {
           <ul>
             <li><strong>Experienced technicians.</strong> Accurate testing with clear documentation.</li>
             <li><strong>Convenient & accessible.</strong> Pop-up stations throughout New York.</li>
+            <li><strong>Scan to verify.</strong> Employers and schools can confirm a card is authentic.</li>
             <li><strong>Fast, reliable documentation.</strong> Look up and resend a lost e-card quickly.</li>
             <li><strong>Transparent pricing.</strong> $75 per fit test. No hidden fees.</li>
             <li><strong>OSHA-compliant protocols.</strong> Testing follows 29 CFR 1910.134 Appendix A.</li>
@@ -346,13 +391,14 @@ const HomePage = () => {
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Your documented e-card</h2>
           <p className={styles.sectionLead}>
-            After your test, we email a documented e-card and keep it in our records system for up to 3 years.
+            After your test, we email a documented e-card with a QR code to verify it. We keep the
+            record on file for up to 3 years.
           </p>
         </div>
         <ul className={styles.ecardFacts}>
-          <li><strong>$75</strong> per fit test</li>
+          <li><strong>Scan to verify</strong></li>
           <li>Records kept on file <strong>3 years</strong></li>
-          <li>Fast e-card lookup</li>
+          <li><strong>$75</strong> per fit test</li>
         </ul>
         <div className={styles.ecardActions}>
           <button
@@ -364,6 +410,14 @@ const HomePage = () => {
           >
             {ecardOpen ? 'Hide sample e-card' : 'View sample e-card'}
           </button>
+          <a
+            className={styles.ctaButtonGhost}
+            href={VERIFY_ECARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Verify an e-card
+          </a>
           <a
             className={styles.ctaButtonGhost}
             href={RESEND_ECARD_URL}

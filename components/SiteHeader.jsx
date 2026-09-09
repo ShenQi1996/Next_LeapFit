@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import logoMark from '../pages/images/logo.png';
-import { RESEND_ECARD_URL } from '../lib/site';
+import { RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
 import styles from '../pages/style/index.module.scss';
 
 const SiteHeader = ({ home = false, current }) => {
@@ -65,9 +65,35 @@ const SiteHeader = ({ home = false, current }) => {
           >
             Legal
           </a>
+          <a
+            className={styles.navMobileOnly}
+            href={VERIFY_ECARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+          >
+            Verify e-card
+          </a>
+          <a
+            className={styles.navMobileOnly}
+            href={RESEND_ECARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+          >
+            Lost E-Card
+          </a>
         </div>
 
         <div className={styles.navActions}>
+          <a
+            className={styles.navGhost}
+            href={VERIFY_ECARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Verify e-card
+          </a>
           <a
             className={styles.navGhost}
             href={RESEND_ECARD_URL}

@@ -7,6 +7,7 @@ import {
   CONTACT_PHONE_HREF,
   MANHATTAN_CALENDLY,
   RESEND_ECARD_URL,
+  VERIFY_ECARD_URL,
   SERVICE_AREA,
 } from '../lib/site';
 import homeStyles from './style/index.module.scss';
@@ -16,14 +17,14 @@ const ContactPage = () => (
   <PageShell
     current="contact"
     title="Contact Secure Fit LLC | Respiratory Fit Testing"
-    description="Call or email Secure Fit LLC, schedule a Manhattan or Brooklyn appointment, or resend a lost e-card."
+    description="Call or email Secure Fit LLC, schedule a Manhattan or Brooklyn appointment, verify an e-card, or resend a lost card."
   >
     <section className={styles.hero}>
       <p className={styles.kicker}>Contact</p>
       <h1>How to reach Secure Fit LLC</h1>
       <p className={styles.lead}>
-        Use phone or email for questions, Calendly for appointments, and the resend tool for a lost e-card.
-        Our inbox and phone are not emergency services.
+        Use phone or email for questions, Calendly for appointments, verify an issued e-card, or
+        resend a lost one. Our inbox and phone are not emergency services.
       </p>
     </section>
 
@@ -67,6 +68,15 @@ const ContactPage = () => (
           A linked booking page is not automatically the same legal provider. Check the confirmation
           for the entity, location, and contact details for that appointment.
         </p>
+      </article>
+      <article className={styles.contactCard}>
+        <h2>Verify an e-card</h2>
+        <p>
+          <a href={VERIFY_ECARD_URL} target="_blank" rel="noopener noreferrer">
+            Scan or enter the confirm code
+          </a>
+        </p>
+        <p>Confirms the record is on file. It does not display date of birth or email.</p>
       </article>
       <article className={styles.contactCard}>
         <h2>Lost e-card</h2>

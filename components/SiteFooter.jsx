@@ -1,5 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import BrandLogo from './BrandLogo';
+import ExternalLink from './ExternalLink';
+import { LEGAL_POLICIES } from '../lib/legal';
+import { createSectionHref } from '../lib/nav';
 import {
   BROOKLYN_CALENDLY,
   BROOKLYN_EMAIL,
@@ -11,10 +15,10 @@ import {
   VERIFY_ECARD_URL,
   SERVICE_AREA,
 } from '../lib/site';
-import styles from '../pages/style/index.module.scss';
+import styles from '../styles/footer.module.scss';
 
 const SiteFooter = ({ home = false, onSampleEcard }) => {
-  const section = (hash) => (home ? hash : `/${hash}`);
+  const section = createSectionHref(home);
 
   return (
     <footer className={styles.footer}>
@@ -28,7 +32,7 @@ const SiteFooter = ({ home = false, onSampleEcard }) => {
         </div>
         <ul className={styles.footerNav}>
           <li><a href={section('#services')}>Our Services</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><Link href="/contact">Contact</Link></li>
           {onSampleEcard ? (
             <li>
               <a
@@ -43,49 +47,32 @@ const SiteFooter = ({ home = false, onSampleEcard }) => {
             </li>
           ) : null}
           <li>
-            <a href={VERIFY_ECARD_URL} target="_blank" rel="noopener noreferrer">
-              Verify e-card
-            </a>
+            <ExternalLink href={VERIFY_ECARD_URL}>Verify e-card</ExternalLink>
           </li>
           <li>
-            <a href={RESEND_ECARD_URL} target="_blank" rel="noopener noreferrer">
-              Resend e-card
-            </a>
+            <ExternalLink href={RESEND_ECARD_URL}>Resend e-card</ExternalLink>
           </li>
-          <li><a href="/legal">Legal policies</a></li>
+          <li><Link href="/legal">Legal policies</Link></li>
         </ul>
         <div className={styles.footerContact}>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
           <a href={`mailto:${BROOKLYN_EMAIL}`}>Brooklyn: {BROOKLYN_EMAIL}</a>
           <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE}</a>
           <p>{SERVICE_AREA}</p>
-          <a href={MANHATTAN_CALENDLY} target="_blank" rel="noopener noreferrer">Schedule Manhattan</a>
-          <a href={BROOKLYN_CALENDLY} target="_blank" rel="noopener noreferrer">Schedule Brooklyn</a>
+          <ExternalLink href={MANHATTAN_CALENDLY}>Schedule Manhattan</ExternalLink>
+          <ExternalLink href={BROOKLYN_CALENDLY}>Schedule Brooklyn</ExternalLink>
         </div>
       </div>
       <div className={styles.footerLegal}>
         <p className={styles.footerLegalTitle}>Legal</p>
         <ul>
           <li>
-            <a href="/legal/service">Service</a>
-            {' · '}
-            <a href="/legal/booking">Booking</a>
-            {' · '}
-            <a href="/legal/terms">Terms</a>
-            {' · '}
-            <a href="/legal/privacy">Privacy</a>
-            {' · '}
-            <a href="/legal/cookies">Cookies</a>
-            {' · '}
-            <a href="/legal/records">Records</a>
-            {' · '}
-            <a href="/legal/onsite">On-site</a>
-            {' · '}
-            <a href="/legal/communications">Email and texts</a>
-            {' · '}
-            <a href="/legal/accessibility">Accessibility</a>
-            {' · '}
-            <a href="/legal/reviews">Reviews</a>
+            {LEGAL_POLICIES.map((policy, index) => (
+              <React.Fragment key={policy.slug}>
+                {index > 0 ? ' · ' : null}
+                <Link href={`/legal/${policy.slug}`}>{policy.navLabel}</Link>
+              </React.Fragment>
+            ))}
           </li>
           <li>
             Fit testing follows OSHA 29 CFR 1910.134 Appendix A protocols. A pass applies only to the listed respirator.

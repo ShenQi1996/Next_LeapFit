@@ -1,3 +1,5 @@
+@use '../styles/tokens' as *;
+
 .chatRoot {
     position: fixed;
     right: 1.25rem;
@@ -7,7 +9,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 0.75rem;
-    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    font-family: $font-body;
 }
 
 .panel {
@@ -23,7 +25,7 @@
 }
 
 .header {
-    background: #0B2D4A;
+    background: $navy;
     color: #fff;
     padding: 0.9rem 1rem;
     display: flex;
@@ -34,7 +36,7 @@
 
 .title {
     margin: 0;
-    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    font-family: $font-heading;
     font-weight: 700;
     font-size: 1rem;
 }
@@ -86,7 +88,7 @@
 }
 
 .botLink {
-    color: #0B2D4A;
+    color: $navy;
     background: #e7f3f8;
     padding: 0.12rem 0.28rem;
     border-radius: 4px;
@@ -95,7 +97,7 @@
 
     &:hover {
         color: #fff;
-        background: #14B8A6;
+        background: $teal;
         text-decoration-color: #fff;
     }
 }
@@ -116,7 +118,7 @@
 
 .userBubble {
     align-self: flex-end;
-    background: #14B8A6;
+    background: $teal;
     color: #fff;
 }
 
@@ -130,7 +132,7 @@
 .limitNote {
     margin: 0;
     padding: 0 1rem 0.5rem;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 0.8rem;
     line-height: 1.4;
 }
@@ -152,13 +154,13 @@
     outline: none;
 
     &:focus {
-        border-color: #14B8A6;
+        border-color: $teal;
     }
 }
 
 .sendButton,
 .toggle {
-    background: #14B8A6;
+    background: $teal;
     color: #fff;
     border: 0;
     font-weight: 700;
@@ -199,7 +201,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #14B8A6;
+    background: $teal;
     color: #fff;
     font-size: 1rem;
     line-height: 20px;

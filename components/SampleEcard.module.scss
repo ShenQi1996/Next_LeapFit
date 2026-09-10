@@ -1,8 +1,10 @@
+@use '../styles/tokens' as *;
+
 .preview {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
-    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    font-family: $font-body;
 }
 
 .kicker {
@@ -84,7 +86,7 @@
     align-items: center;
     gap: 0.9rem;
     padding: 1.4rem 1.75rem;
-    background: linear-gradient(135deg, #0B2D4A 0%, #14B8A6 100%);
+    background: linear-gradient(135deg, $navy 0%, $teal 100%);
     color: #fff;
 }
 
@@ -92,8 +94,8 @@
     width: 58px;
     height: 58px;
     border-radius: 10px;
-    background-color: #0B2D4A;
-    background-image: url(../pages/images/logo-on-dark.png);
+    background-color: $navy;
+    background-image: url(../assets/logo-on-dark.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -161,7 +163,7 @@
 
 .titleRow h4 {
     margin: 0;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 1.35rem;
 }
 
@@ -188,12 +190,12 @@
 
 .pillTeal {
     background: #e8f8f4;
-    color: #0F9A8A;
+    color: $teal-dark;
 }
 
 .pillBlue {
     background: #e8f2f8;
-    color: #0B2D4A;
+    color: $navy;
 }
 
 .panel {
@@ -217,21 +219,21 @@
 
 .confirmLabel {
     margin: 0;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 0.75rem;
     font-weight: 700;
 }
 
 .confirmCode {
     margin: 0.25rem 0 0.5rem;
-    color: #0F9A8A;
-    font-family: 'Courier New', Courier, monospace;
+    color: $teal-dark;
+    font-family: $font-mono;
     font-size: 0.85rem;
     letter-spacing: 0.02em;
 }
 
 .followUp {
-    color: #0F9A8A;
+    color: $teal-dark;
     font-weight: 700;
     font-size: 0.85rem;
     text-decoration: none;
@@ -255,7 +257,7 @@
 
 .qrLabel {
     margin: 0 0 0.75rem;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 0.9rem;
     font-weight: 700;
 }
@@ -278,18 +280,18 @@
 .field label {
     display: block;
     margin-bottom: 0.4rem;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 0.88rem;
     font-weight: 700;
 }
 
 .fieldValue {
     padding: 0.55rem 0.85rem;
-    background: #F7FAFC;
+    background: $white;
     border: 1px solid rgba(11, 45, 74, 0.10);
     border-radius: 6px;
-    color: #4d6273;
-    font-family: 'Courier New', Courier, monospace;
+    color: $muted;
+    font-family: $font-mono;
     font-size: 0.9rem;
 }
 
@@ -306,19 +308,19 @@
 }
 
 .details th {
-    color: #0B2D4A;
+    color: $navy;
     font-weight: 700;
     text-align: left;
 }
 
 .details td {
-    color: #4d6273;
+    color: $muted;
     text-align: right;
     font-weight: 500;
 }
 
 .pass {
-    color: #0F9A8A;
+    color: $teal-dark;
     font-weight: 800;
 }
 
@@ -332,7 +334,7 @@
 
 .helpBox h3 {
     margin: 0 0 0.45rem;
-    color: #0B2D4A;
+    color: $navy;
     font-size: 1.15rem;
 }
 
@@ -344,7 +346,7 @@
 }
 
 .helpBox a {
-    color: #0F9A8A;
+    color: $teal-dark;
     font-weight: 700;
 }
 

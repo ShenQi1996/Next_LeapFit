@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import helloAnimation from '../pages/images/hello.json';
+import ExternalLink from './ExternalLink';
+import helloAnimation from '../assets/hello.json';
+import {
+  ALLOWED_EMAILS,
+  ALLOWED_LINK_HOSTS,
+  LIMIT_MESSAGE,
+  MAX_DAILY_QUESTIONS,
+  MAX_MESSAGE_LENGTH,
+} from '../lib/chat';
 import styles from './ChatWidget.module.scss';
 
 const Lottie = dynamic(() => import('lottie-react').then((mod) => mod.Lottie), {
@@ -13,23 +21,10 @@ const WELCOME_MESSAGE = {
     "Hey, welcome in! I can help with fit tests, pricing, masks, booking, verifying an e-card, or a lost card. What can I do for you?",
 };
 
-const MAX_DAILY_QUESTIONS = 30;
 const QUESTION_COUNT_KEY = 'secureFitChatDaily';
-const LIMIT_MESSAGE =
-  "You've asked 30 questions today. Email us at SecureFit2024@gmail.com or grab a time on the calendar — we'll take it from there.";
 
 const LINK_PATTERN =
   /(https?:\/\/[^\s<>"'`]+|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g;
-
-const ALLOWED_LINK_HOSTS = new Set([
-  'calendly.com',
-  'www.calendly.com',
-  'next-leap-fit.vercel.app',
-  'next-leap-fit-bk-2026.vercel.app',
-  '2026-fit-testing-results-e-card.vercel.app',
-]);
-
-const ALLOWED_EMAILS = new Set(['securefit2024@gmail.com', 'securefit.bk@gmail.com']);
 
 const utcDay = () => new Date().toISOString().slice(0, 10);
 
@@ -66,14 +61,9 @@ const renderLinkedText = (text, linkClassName) => {
     if (isAllowedHttpUrl(cleaned)) {
       return (
         <React.Fragment key={`${cleaned}-${index}`}>
-          <a
-            className={linkClassName}
-            href={cleaned}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ExternalLink className={linkClassName} href={cleaned}>
             {cleaned}
-          </a>
+          </ExternalLink>
           {trailing}
         </React.Fragment>
       );
@@ -187,7 +177,7 @@ const ChatWidget = () => {
         <section className={styles.panel} aria-label="Chat with Secure Fit">
           <header className={styles.header}>
             <div>
-              <p className={styles.title}>Hey, we're Secure Fit</p>
+              <p className={styles.title}>Hey, we&apos;re Secure Fit</p>
               <p className={styles.subtitle}>Ask anything — fit tests, prices, booking, you name it.</p>
             </div>
             <button
@@ -227,7 +217,7 @@ const ChatWidget = () => {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder={limitReached ? 'Question limit reached' : 'Say hi or ask a question...'}
-              maxLength={1000}
+              maxLength={MAX_MESSAGE_LENGTH}
               aria-label="Chat question"
               disabled={limitReached || loading}
             />

@@ -1,0 +1,117 @@
+@use './tokens' as *;
+
+.footer {
+    background: $navy;
+    color: #fff;
+    padding: 3.5rem 1.5rem 1.75rem;
+}
+
+.footerContent {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+}
+
+.footerBrand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    h3 {
+        margin: 0;
+        font-family: $font-heading;
+        font-size: 1.2rem;
+    }
+
+    p {
+        margin: 0.2rem 0 0;
+        color: $aqua;
+        font-size: 0.88rem;
+    }
+}
+
+.footerLogo {
+    width: auto;
+    height: 58px;
+    max-width: 96px;
+    object-fit: contain;
+    background: transparent;
+}
+
+.footerNav,
+.footerContact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a,
+    p {
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    a:hover {
+        color: $aqua;
+    }
+}
+
+.footerLegal {
+    max-width: 1240px;
+    margin: 2.25rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footerLegalTitle {
+    margin: 0 0 0.55rem;
+    color: $aqua;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.footerLegal ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.footerLegal a {
+    color: $aqua;
+    text-decoration: none;
+}
+
+.footerLegal a:hover,
+.footerLegal a:focus-visible {
+    text-decoration: underline;
+}
+
+.footerBottom {
+    max-width: 1240px;
+    margin: 1.25rem auto 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+
+    p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.82rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .footerContent {
+        grid-template-columns: 1.2fr 1fr 1fr;
+        align-items: start;
+    }
+}

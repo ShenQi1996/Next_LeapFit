@@ -1,12 +1,4 @@
-$navy: #0B2D4A;
-$teal: #14B8A6;
-$teal-dark: #0F9A8A;
-$aqua: #A7E3E0;
-$white: #F7FAFC;
-$ink: #0B2D4A;
-$muted: #4d6273;
-$font-heading: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-$font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+@use './tokens' as *;
 
 .main {
     max-width: 1240px;

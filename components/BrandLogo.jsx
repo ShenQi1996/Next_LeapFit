@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logoOnDark from '../pages/images/logo-on-dark.png';
+import logoOnDark from '../assets/logo-on-dark.png';
 
 const BrandLogo = ({ className }) => (
   <Image

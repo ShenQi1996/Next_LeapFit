@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import ExternalLink from '../components/ExternalLink';
 import PageShell from '../components/PageShell';
 import {
   BROOKLYN_CALENDLY,
@@ -10,8 +12,8 @@ import {
   VERIFY_ECARD_URL,
   SERVICE_AREA,
 } from '../lib/site';
-import homeStyles from './style/index.module.scss';
-import styles from './style/legal.module.scss';
+import buttons from '../styles/buttons.module.scss';
+import styles from '../styles/legal.module.scss';
 
 const ContactPage = () => (
   <PageShell
@@ -47,18 +49,18 @@ const ContactPage = () => (
       <article className={styles.contactCard}>
         <h2>Schedule Manhattan</h2>
         <p>
-          <a href={MANHATTAN_CALENDLY} target="_blank" rel="noopener noreferrer">
+          <ExternalLink href={MANHATTAN_CALENDLY}>
             Book a Manhattan appointment
-          </a>
+          </ExternalLink>
         </p>
         <p>$75 for one person and one selected respirator configuration.</p>
       </article>
       <article className={styles.contactCard}>
         <h2>Schedule Brooklyn</h2>
         <p>
-          <a href={BROOKLYN_CALENDLY} target="_blank" rel="noopener noreferrer">
+          <ExternalLink href={BROOKLYN_CALENDLY}>
             Book a Brooklyn appointment
-          </a>
+          </ExternalLink>
         </p>
         <p>
           Brooklyn questions:{' '}
@@ -72,18 +74,18 @@ const ContactPage = () => (
       <article className={styles.contactCard}>
         <h2>Verify an e-card</h2>
         <p>
-          <a href={VERIFY_ECARD_URL} target="_blank" rel="noopener noreferrer">
+          <ExternalLink href={VERIFY_ECARD_URL}>
             Scan or enter the confirm code
-          </a>
+          </ExternalLink>
         </p>
         <p>Confirms the record is on file. It does not display date of birth or email.</p>
       </article>
       <article className={styles.contactCard}>
         <h2>Lost e-card</h2>
         <p>
-          <a href={RESEND_ECARD_URL} target="_blank" rel="noopener noreferrer">
+          <ExternalLink href={RESEND_ECARD_URL}>
             Resend your most recent e-card
-          </a>
+          </ExternalLink>
         </p>
         <p>Use the name, date of birth, and email from your original fit test.</p>
       </article>
@@ -103,15 +105,15 @@ const ContactPage = () => (
     </p>
 
     <div className={styles.actions}>
-      <a className={homeStyles.ctaButton} href={CONTACT_PHONE_HREF}>
+      <a className={buttons.ctaButton} href={CONTACT_PHONE_HREF}>
         Call {CONTACT_PHONE}
       </a>
-      <a className={homeStyles.ctaButtonGhost} href={`mailto:${CONTACT_EMAIL}`}>
+      <a className={buttons.ctaButtonGhost} href={`mailto:${CONTACT_EMAIL}`}>
         Email Secure Fit LLC
       </a>
-      <a className={homeStyles.ctaButtonGhost} href="/legal">
+      <Link className={buttons.ctaButtonGhost} href="/legal">
         Read legal policies
-      </a>
+      </Link>
     </div>
   </PageShell>
 );

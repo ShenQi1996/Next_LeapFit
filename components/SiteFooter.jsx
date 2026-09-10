@@ -96,7 +96,7 @@ const SiteFooter = ({ home = false, onSampleEcard }) => {
         </ul>
       </div>
       <div className={styles.footerBottom}>
-        <p>&copy; {new Date().getFullYear()} Secure Fit LLC. People protected. Healthier tomorrows.</p>
+        <p>&copy; 2024 Secure Fit LLC. People protected. Healthier tomorrows.</p>
       </div>
     </footer>
   );

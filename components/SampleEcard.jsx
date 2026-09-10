@@ -123,7 +123,7 @@ const SampleEcard = () => {
             <li>Not a medical clearance. Employer remains responsible for its program.</li>
           </ul>
           <p className={styles.legalFine}>
-            Demo only. Do not copy or use as official documentation. © 2026 Secure Fit LLC.
+            Demo only. Do not copy or use as official documentation. © 2024 Secure Fit LLC.
           </p>
         </footer>
       </article>

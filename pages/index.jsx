@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import ChatWidget from '../components/ChatWidget';
+import ExternalLink from '../components/ExternalLink';
+import PageShell from '../components/PageShell';
 import SampleEcard from '../components/SampleEcard';
-import SiteFooter from '../components/SiteFooter';
-import SiteHeader from '../components/SiteHeader';
-import heroPhoto from './images/hero-clinician.jpg';
-import maskHands from './images/mask-hands.jpg';
-import nycSkyline from './images/nyc-skyline.jpg';
+import heroPhoto from '../assets/hero-clinician.jpg';
+import maskHands from '../assets/mask-hands.jpg';
+import nycSkyline from '../assets/nyc-skyline.jpg';
 import { BROOKLYN_CALENDLY, MANHATTAN_CALENDLY, RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
-import styles from "./style/index.module.scss";
+import buttons from '../styles/buttons.module.scss';
+import styles from '../styles/home.module.scss';
 
 const SERVICES = [
   {
@@ -88,54 +88,67 @@ const REVIEWS = [
   },
 ];
 
-const ServiceIcon = ({ name }) => {
-  const icons = {
-    mask: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 11h8M9 15h6M12 4c3.5 0 6 2.2 6 5.5V11c0 3.2-2 6.2-5 7.5v1.2c0 .7-.6 1.3-1.3 1.3h-1.4c-.7 0-1.3-.6-1.3-1.3V18.5C8 17.2 6 14.2 6 11V9.5C6 6.2 8.5 4 12 4Z" />
-      </svg>
-    ),
-    shield: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3 5 6v6c0 4.2 2.8 7.8 7 8.8 4.2-1 7-4.6 7-8.8V6l-7-3Z" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-    school: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="m3 10 9-5 9 5-9 5-9-5Z" />
-        <path d="M7 12.2V17c0 .6 2.2 2 5 2s5-1.4 5-2v-4.8" />
-      </svg>
-    ),
-    people: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="9" cy="8" r="2.2" />
-        <circle cx="15.5" cy="8.5" r="1.8" />
-        <path d="M4.5 18c.4-2.6 2.4-4 4.5-4s4.1 1.4 4.5 4" />
-        <path d="M13 16.4c.6-1.5 2-2.4 3.5-2.4 1.6 0 3 .9 3.5 2.5" />
-      </svg>
-    ),
-    pin: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z" />
-        <circle cx="12" cy="11" r="2.2" />
-      </svg>
-    ),
-    card: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="5" y="4" width="14" height="16" rx="2" />
-        <path d="M8 9h8M8 13h8M8 17h5" />
-      </svg>
-    ),
-    verify: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="4" y="4" width="16" height="16" rx="3" />
-        <path d="m8 12 2.5 2.5L16 9" />
-      </svg>
-    ),
-  };
-  return icons[name] || null;
+const ICONS = {
+  mask: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 11h8M9 15h6M12 4c3.5 0 6 2.2 6 5.5V11c0 3.2-2 6.2-5 7.5v1.2c0 .7-.6 1.3-1.3 1.3h-1.4c-.7 0-1.3-.6-1.3-1.3V18.5C8 17.2 6 14.2 6 11V9.5C6 6.2 8.5 4 12 4Z" />
+    </svg>
+  ),
+  shield: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3 5 6v6c0 4.2 2.8 7.8 7 8.8 4.2-1 7-4.6 7-8.8V6l-7-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  ),
+  school: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m3 10 9-5 9 5-9 5-9-5Z" />
+      <path d="M7 12.2V17c0 .6 2.2 2 5 2s5-1.4 5-2v-4.8" />
+    </svg>
+  ),
+  people: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="9" cy="8" r="2.2" />
+      <circle cx="15.5" cy="8.5" r="1.8" />
+      <path d="M4.5 18c.4-2.6 2.4-4 4.5-4s4.1 1.4 4.5 4" />
+      <path d="M13 16.4c.6-1.5 2-2.4 3.5-2.4 1.6 0 3 .9 3.5 2.5" />
+    </svg>
+  ),
+  person: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="8" r="3.2" />
+      <path d="M6.5 19c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5" />
+    </svg>
+  ),
+  pin: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z" />
+      <circle cx="12" cy="11" r="2.2" />
+    </svg>
+  ),
+  card: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="5" y="4" width="14" height="16" rx="2" />
+      <path d="M8 9h8M8 13h8M8 17h5" />
+    </svg>
+  ),
+  verify: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <path d="m8 12 2.5 2.5L16 9" />
+    </svg>
+  ),
 };
+
+const TRUST_ITEMS = [
+  { icon: 'shield', label: 'OSHA-Compliant' },
+  { icon: 'person', label: 'Experienced team' },
+  { icon: 'pin', label: 'Convenient Locations' },
+  { icon: 'card', label: 'Fast E-Cards' },
+  { icon: 'verify', label: 'Scan to verify' },
+];
+
+const Icon = ({ name }) => ICONS[name] || null;
 
 const HomePage = () => {
   const [ecardOpen, setEcardOpen] = useState(false);
@@ -175,9 +188,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={styles.Homepage}>
-      <SiteHeader home />
-
+    <PageShell
+      home
+      onSampleEcard={openEcard}
+      title="Secure Fit LLC | Respiratory Fit Testing"
+      description="OSHA-compliant respiratory fit testing in New York. $75 per test, documented e-cards you can scan to verify, and records kept for up to 3 years."
+    >
       <section className={styles.hero} id="top">
         <div className={styles.heroMedia}>
           <Image
@@ -200,40 +216,21 @@ const HomePage = () => {
               on file for up to 3 years.
             </p>
             <div className={styles.heroButtons}>
-              <a className={styles.ctaButton} href="#schedule">
+              <a className={buttons.ctaButton} href="#schedule">
                 Schedule Appointment →
               </a>
-              <a
-                className={styles.ctaButtonGhost}
-                href={VERIFY_ECARD_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <ExternalLink className={buttons.ctaButtonGhost} href={VERIFY_ECARD_URL}>
                 Verify an e-card
-              </a>
+              </ExternalLink>
             </div>
             <p className={styles.heroMotto}>Fit. Test. Breathe. Confidently.</p>
             <ul className={styles.trustBar}>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.8 7.8 7 8.8 4.2-1 7-4.6 7-8.8V6l-7-3Z" /><path d="m9 12 2 2 4-4" /></svg>
-                OSHA-Compliant
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" /><path d="M6.5 19c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5" /></svg>
-                Experienced team
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z" /><circle cx="12" cy="11" r="2.2" /></svg>
-                Convenient Locations
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2" /><path d="M8 9h8M8 13h8M8 17h5" /></svg>
-                Fast E-Cards
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="m8 12 2.5 2.5L16 9" /></svg>
-                Scan to verify
-              </li>
+              {TRUST_ITEMS.map((item) => (
+                <li key={item.label}>
+                  <Icon name={item.icon} />
+                  {item.label}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -247,14 +244,9 @@ const HomePage = () => {
             record is on file, still valid, expired, or did not pass — without a public name search.
           </p>
         </div>
-        <a
-          className={styles.ctaButton}
-          href={VERIFY_ECARD_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ExternalLink className={buttons.ctaButton} href={VERIFY_ECARD_URL}>
           Verify an e-card
-        </a>
+        </ExternalLink>
       </section>
 
       <section className={styles.resendBanner} id="lost-ecard">
@@ -265,14 +257,9 @@ const HomePage = () => {
             We will send your most recent card to the email on file.
           </p>
         </div>
-        <a
-          className={styles.ctaButton}
-          href={RESEND_ECARD_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ExternalLink className={buttons.ctaButton} href={RESEND_ECARD_URL}>
           Resend via email
-        </a>
+        </ExternalLink>
       </section>
 
       <section className={styles.services} id="services">
@@ -286,22 +273,25 @@ const HomePage = () => {
           {SERVICES.map((service) => (
             <article className={styles.serviceCard} id={service.id} key={service.id}>
               <div className={styles.serviceIcon}>
-                <ServiceIcon name={service.icon} />
+                <Icon name={service.icon} />
               </div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <a
-                href={service.href}
-                onClick={(event) => {
-                  if (service.href === '#sample-ecard') {
-                    event.preventDefault();
-                    openEcard();
-                  }
-                }}
-                {...(service.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                {service.linkLabel} →
-              </a>
+              {service.external ? (
+                <ExternalLink href={service.href}>{service.linkLabel} →</ExternalLink>
+              ) : (
+                <a
+                  href={service.href}
+                  onClick={(event) => {
+                    if (service.href === '#sample-ecard') {
+                      event.preventDefault();
+                      openEcard();
+                    }
+                  }}
+                >
+                  {service.linkLabel} →
+                </a>
+              )}
             </article>
           ))}
         </div>
@@ -319,14 +309,9 @@ const HomePage = () => {
               <h3>{step.title}</h3>
               <p>{step.description}</p>
               {step.number === '3' && (
-                <a
-                  className={styles.processLink}
-                  href={VERIFY_ECARD_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <ExternalLink className={styles.processLink} href={VERIFY_ECARD_URL}>
                   Verify an e-card
-                </a>
+                </ExternalLink>
               )}
             </li>
           ))}
@@ -346,22 +331,12 @@ const HomePage = () => {
             <li>No hidden fees</li>
           </ul>
           <div className={styles.pricingButtons}>
-            <a
-              className={styles.ctaButton}
-              href={MANHATTAN_CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <ExternalLink className={buttons.ctaButton} href={MANHATTAN_CALENDLY}>
               Schedule Manhattan
-            </a>
-            <a
-              className={styles.ctaButtonOnDark}
-              href={BROOKLYN_CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            </ExternalLink>
+            <ExternalLink className={buttons.ctaButtonOnDark} href={BROOKLYN_CALENDLY}>
               Schedule Brooklyn
-            </a>
+            </ExternalLink>
           </div>
         </div>
 
@@ -408,22 +383,12 @@ const HomePage = () => {
           >
             {ecardOpen ? 'Hide sample e-card' : 'View sample e-card'}
           </button>
-          <a
-            className={styles.ctaButtonGhost}
-            href={VERIFY_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ExternalLink className={buttons.ctaButtonGhost} href={VERIFY_ECARD_URL}>
             Verify an e-card
-          </a>
-          <a
-            className={styles.ctaButtonGhost}
-            href={RESEND_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          </ExternalLink>
+          <ExternalLink className={buttons.ctaButtonGhost} href={RESEND_ECARD_URL}>
             Resend a lost e-card
-          </a>
+          </ExternalLink>
         </div>
         <div
           id="sample-ecard-preview"
@@ -456,10 +421,7 @@ const HomePage = () => {
           <Image src={nycSkyline} alt="New York City skyline" fill sizes="(min-width: 1024px) 32vw, 100vw" />
         </div>
       </section>
-
-      <SiteFooter home onSampleEcard={openEcard} />
-      <ChatWidget />
-    </div>
+    </PageShell>
   );
 };
 

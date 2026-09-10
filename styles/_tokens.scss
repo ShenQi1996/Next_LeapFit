@@ -1,0 +1,17 @@
+// Shared design tokens. Import with `@use '../styles/tokens' as *;` from a
+// component stylesheet, or `@use './tokens' as *;` from within this folder.
+
+$navy: #0B2D4A;
+$teal: #14B8A6;
+$teal-dark: #0F9A8A;
+$aqua: #A7E3E0;
+$white: #F7FAFC;
+$ink: #0B2D4A;
+$muted: #4d6273;
+
+$font-heading: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+$font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+$font-accent: 'Cormorant Garamond', Georgia, serif;
+$font-mono: 'Courier New', Courier, monospace;
+
+$header-height: 6rem;

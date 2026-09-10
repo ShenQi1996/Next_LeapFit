@@ -88,6 +88,12 @@ http://localhost:3000
 
 Press `Ctrl + C` in the terminal to stop the development server.
 
+### Linting
+
+```bash
+npm run lint
+```
+
 ## Building for Production
 
 ### Step 1: Build the Application
@@ -247,20 +253,40 @@ For deployment on a traditional server (AWS, DigitalOcean, etc.):
 
 ```
 Next_LeapFit-main/
+├── assets/                  # Images and the Lottie animation, imported by components
 ├── components/
-│   └── ChatWidget.jsx  # Landing page chat assistant
+│   ├── ChatWidget.jsx       # Landing page chat assistant
+│   ├── ExternalLink.jsx     # Anchor with target/rel defaults
+│   ├── LegalPolicyPage.jsx  # Shared renderer for every legal policy
+│   ├── PageShell.jsx        # Head, header, footer, and chat wrapper
+│   ├── SiteHeader.jsx / SiteFooter.jsx
+│   └── SampleEcard.jsx
+├── lib/
+│   ├── chat.js              # Chat limits and link allowlist
+│   ├── nav.js               # Section anchor helper
+│   ├── site.js              # Contact details, URLs, and prices
+│   └── legal/
+│       ├── policies.js      # Policy metadata (slug, title, summary)
+│       ├── sections.js      # Full policy prose, keyed by slug
+│       └── index.js         # Lookup helpers used by getStaticProps
 ├── pages/
-│   ├── _app.jsx        # App wrapper
-│   ├── index.jsx       # Landing page
-│   ├── api/
-│   │   └── chat.js     # OpenAI chat API route
-│   ├── images/         # Image assets
-│   └── style/          # SCSS stylesheets
-├── .nvmrc              # Pinned Node.js version (24.19.0)
-├── package.json        # Project dependencies, scripts, and engines
-├── DEPLOYMENT.md       # Production deployment guide
-└── README.md           # This file
+│   ├── _app.jsx             # App wrapper
+│   ├── index.jsx            # Landing page
+│   ├── contact.jsx
+│   ├── api/chat.js          # OpenAI chat API route
+│   └── legal/
+│       ├── index.jsx        # Policy directory
+│       └── [slug].jsx       # One static page per policy
+├── styles/                  # SCSS modules plus _tokens.scss and globals.scss
+├── .nvmrc                   # Pinned Node.js version (24.19.0)
+├── package.json             # Project dependencies, scripts, and engines
+├── DEPLOYMENT.md            # Production deployment guide
+└── README.md                # This file
 ```
+
+Adding a legal policy means adding one entry to `lib/legal/policies.js` and its prose
+to `lib/legal/sections.js`. The route, the directory page, and the footer link list
+are all generated from that data.
 
 ## Technologies Used
 

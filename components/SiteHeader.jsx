@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import logoMark from '../pages/images/logo.png';
+import Link from 'next/link';
+import ExternalLink from './ExternalLink';
+import logoMark from '../assets/logo.png';
+import { createSectionHref } from '../lib/nav';
 import { RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
-import styles from '../pages/style/index.module.scss';
+import styles from '../styles/header.module.scss';
 
 const SiteHeader = ({ home = false, current }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
-  const section = (hash) => (home ? hash : `/${hash}`);
+  const section = createSectionHref(home);
 
   return (
     <header className={styles.header}>
@@ -51,57 +54,43 @@ const SiteHeader = ({ home = false, current }) => {
           <a href={section('#services')} onClick={closeMenu}>Our Services</a>
           <a href={section('#how-it-works')} onClick={closeMenu}>How It Works</a>
           <a href={section('#why-pick-us')} onClick={closeMenu}>Why Pick Us</a>
-          <a
+          <Link
             href="/contact"
             className={current === 'contact' ? styles.navCurrent : undefined}
             onClick={closeMenu}
           >
             Contact
-          </a>
-          <a
+          </Link>
+          <Link
             href="/legal"
             className={current === 'legal' ? styles.navCurrent : undefined}
             onClick={closeMenu}
           >
             Legal
-          </a>
-          <a
+          </Link>
+          <ExternalLink
             className={styles.navMobileOnly}
             href={VERIFY_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={closeMenu}
           >
             Verify e-card
-          </a>
-          <a
+          </ExternalLink>
+          <ExternalLink
             className={styles.navMobileOnly}
             href={RESEND_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={closeMenu}
           >
             Lost E-Card
-          </a>
+          </ExternalLink>
         </div>
 
         <div className={styles.navActions}>
-          <a
-            className={styles.navGhost}
-            href={VERIFY_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ExternalLink className={styles.navGhost} href={VERIFY_ECARD_URL}>
             Verify e-card
-          </a>
-          <a
-            className={styles.navGhost}
-            href={RESEND_ECARD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          </ExternalLink>
+          <ExternalLink className={styles.navGhost} href={RESEND_ECARD_URL}>
             Lost E-Card
-          </a>
+          </ExternalLink>
           <a className={styles.navButton} href={section('#schedule')}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="6" width="16" height="14" rx="2" />

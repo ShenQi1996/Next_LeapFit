@@ -1,11 +1,8 @@
+import Link from 'next/link';
 import PageShell from './PageShell';
-import {
-  CONTACT_EMAIL,
-  LEGAL_DISCLAIMER,
-  LEGAL_EFFECTIVE_DATE,
-  LEGAL_MAILING_LINE,
-} from '../lib/legalPolicies';
-import styles from '../pages/style/legal.module.scss';
+import { LEGAL_DISCLAIMER } from '../lib/legal';
+import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE, LEGAL_MAILING_LINE } from '../lib/site';
+import styles from '../styles/legal.module.scss';
 
 const slugify = (value) =>
   value
@@ -25,7 +22,7 @@ const LegalPolicyPage = ({ policy, previous, next }) => {
       description={policy.summary}
     >
       <p className={styles.crumbs}>
-        <a href="/legal">Legal</a>
+        <Link href="/legal">Legal</Link>
         {' / '}
         {policy.shortTitle}
       </p>
@@ -74,11 +71,15 @@ const LegalPolicyPage = ({ policy, previous, next }) => {
 
       <div className={styles.neighbors}>
         {previous ? (
-          <a href={`/legal/${previous.slug}`}>← {previous.shortTitle}</a>
+          <Link href={`/legal/${previous.slug}`}>← {previous.shortTitle}</Link>
         ) : (
           <span />
         )}
-        {next ? <a href={`/legal/${next.slug}`}>{next.shortTitle} →</a> : <a href="/legal">All policies</a>}
+        {next ? (
+          <Link href={`/legal/${next.slug}`}>{next.shortTitle} →</Link>
+        ) : (
+          <Link href="/legal">All policies</Link>
+        )}
       </div>
     </PageShell>
   );

@@ -1,11 +1,8 @@
+import Link from 'next/link';
 import PageShell from '../../components/PageShell';
-import {
-  CONTACT_EMAIL,
-  LEGAL_DISCLAIMER,
-  LEGAL_EFFECTIVE_DATE,
-  LEGAL_POLICIES,
-} from '../../lib/legalPolicies';
-import styles from '../style/legal.module.scss';
+import { LEGAL_DISCLAIMER, LEGAL_POLICIES } from '../../lib/legal';
+import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE } from '../../lib/site';
+import styles from '../../styles/legal.module.scss';
 
 const LegalIndexPage = () => (
   <PageShell
@@ -30,11 +27,11 @@ const LegalIndexPage = () => (
 
     <div className={styles.grid}>
       {LEGAL_POLICIES.map((policy) => (
-        <a className={styles.policyCard} href={`/legal/${policy.slug}`} key={policy.slug}>
+        <Link className={styles.policyCard} href={`/legal/${policy.slug}`} key={policy.slug}>
           <span className={styles.policyNumber}>{policy.number}</span>
           <h2>{policy.title}</h2>
           <p>{policy.summary}</p>
-        </a>
+        </Link>
       ))}
     </div>
 

@@ -1,25 +1,26 @@
-import Link from 'next/link';
+import CtaLink from '../../components/CtaLink';
 import PageShell from '../../components/PageShell';
 import { LEGAL_DISCLAIMER, LEGAL_POLICIES } from '../../lib/legal';
-import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE } from '../../lib/site';
+import { legalPath } from '../../lib/routes';
+import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE, SITE_NAME, mailto, pageTitle } from '../../lib/site';
 import styles from '../../styles/legal.module.scss';
 
 const LegalIndexPage = () => (
   <PageShell
     current="legal"
-    title="Legal policies | Secure Fit LLC"
-    description="Public service, booking, privacy, records, and website policies for Secure Fit LLC."
+    title={pageTitle('Legal policies')}
+    description={`Public service, booking, privacy, records, and website policies for ${SITE_NAME}.`}
   >
     <section className={styles.hero}>
       <p className={styles.kicker}>Legal</p>
       <h1>Website legal and service policies</h1>
       <p className={styles.lead}>
-        These public policies describe Secure Fit LLC’s current website and fit-testing service.
+        These public policies describe {SITE_NAME}’s current website and fit-testing service.
         Effective date: {LEGAL_EFFECTIVE_DATE}.
       </p>
       <p className={styles.meta}>
-        Provider: Secure Fit LLC · Contact:{' '}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        Provider: {SITE_NAME} · Contact:{' '}
+        <a href={mailto(CONTACT_EMAIL)}>{CONTACT_EMAIL}</a>
       </p>
     </section>
 
@@ -27,11 +28,11 @@ const LegalIndexPage = () => (
 
     <div className={styles.grid}>
       {LEGAL_POLICIES.map((policy) => (
-        <Link className={styles.policyCard} href={`/legal/${policy.slug}`} key={policy.slug}>
+        <CtaLink className={styles.policyCard} href={legalPath(policy.slug)} key={policy.slug}>
           <span className={styles.policyNumber}>{policy.number}</span>
           <h2>{policy.title}</h2>
           <p>{policy.summary}</p>
-        </Link>
+        </CtaLink>
       ))}
     </div>
 

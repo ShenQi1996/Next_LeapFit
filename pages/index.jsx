@@ -1,92 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import CtaLink from '../components/CtaLink';
 import ExternalLink from '../components/ExternalLink';
 import PageShell from '../components/PageShell';
 import SampleEcard from '../components/SampleEcard';
 import heroPhoto from '../assets/hero-clinician.jpg';
 import maskHands from '../assets/mask-hands.jpg';
 import nycSkyline from '../assets/nyc-skyline.jpg';
-import { BROOKLYN_CALENDLY, MANHATTAN_CALENDLY, RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
+import { HOME_REVIEWS, HOME_SERVICES, HOME_STEPS, HOME_TRUST } from '../lib/home';
+import { HOME_HASH } from '../lib/routes';
+import {
+  BOOKING_SITES,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  FIT_TEST_PRICE,
+  MOTTO,
+  OSHA_SHORT,
+  RECORD_YEARS,
+  RESEND_ECARD_URL,
+  SITE_NAME,
+  VERIFY_ECARD_URL,
+} from '../lib/site';
 import buttons from '../styles/buttons.module.scss';
 import styles from '../styles/home.module.scss';
-
-const SERVICES = [
-  {
-    id: 'verify',
-    title: 'Verify an E-Card',
-    description: 'Scan the QR or enter the confirm code. Anyone can check that a Secure Fit record is authentic.',
-    href: VERIFY_ECARD_URL,
-    linkLabel: 'Verify an e-card',
-    icon: 'verify',
-    external: true,
-  },
-  {
-    id: 'fit-testing',
-    title: 'Professional Respiratory Fit Testing',
-    description: 'Qualitative testing so your respirator actually protects you.',
-    href: '#schedule',
-    linkLabel: 'Schedule a test',
-    icon: 'mask',
-  },
-  {
-    id: 'osha',
-    title: 'OSHA-Compliant Protocols',
-    description: 'Testing follows OSHA 29 CFR 1910.134 Appendix A guidelines.',
-    href: '#schedule',
-    linkLabel: 'Book now',
-    icon: 'shield',
-  },
-  {
-    id: 'schools',
-    title: 'Schools & Educational Institutions',
-    description: 'On-site and pop-up fit testing for students and staff.',
-    href: '#schedule',
-    linkLabel: 'Schedule a visit',
-    icon: 'school',
-  },
-  {
-    id: 'workplaces',
-    title: 'Workplaces & Organizations',
-    description: 'Group-friendly testing for teams that need to stay compliant.',
-    href: '#schedule',
-    linkLabel: 'Schedule a visit',
-    icon: 'people',
-  },
-  {
-    id: 'locations',
-    title: 'Pop-Up Locations Throughout New York',
-    description: 'Convenient stations, including Manhattan and Brooklyn appointments.',
-    href: '#schedule',
-    linkLabel: 'View locations',
-    icon: 'pin',
-  },
-  {
-    id: 'ecards',
-    title: 'Documented E-Cards & 3-Year Records',
-    description: 'Official fit-test e-cards emailed after your test, kept on file, and scannable to verify.',
-    href: '#sample-ecard',
-    linkLabel: 'See a sample e-card',
-    icon: 'card',
-  },
-];
-
-const STEPS = [
-  { number: '1', title: 'Schedule', description: 'Book a Manhattan or Brooklyn appointment online.' },
-  { number: '2', title: 'Test', description: 'Trained specialists perform an OSHA-compliant fit test.' },
-  { number: '3', title: 'Get Your E-Card', description: 'We email your official e-card. Scan the QR to verify it anytime.' },
-  { number: '4', title: 'Breathe Confidently', description: 'You leave with documentation for the respirator that was tested.' },
-];
-
-const REVIEWS = [
-  {
-    text: 'Quick, professional service. The technician was thorough and explained everything clearly.',
-    author: 'Sarah M., Construction Manager',
-  },
-  {
-    text: 'Very convenient location and fast turnaround. Highly recommend for workplace compliance.',
-    author: 'Michael R., Safety Coordinator',
-  },
-];
 
 const ICONS = {
   mask: (
@@ -140,14 +76,6 @@ const ICONS = {
   ),
 };
 
-const TRUST_ITEMS = [
-  { icon: 'shield', label: 'OSHA-Compliant' },
-  { icon: 'person', label: 'Experienced team' },
-  { icon: 'pin', label: 'Convenient Locations' },
-  { icon: 'card', label: 'Fast E-Cards' },
-  { icon: 'verify', label: 'Scan to verify' },
-];
-
 const Icon = ({ name }) => ICONS[name] || null;
 
 const HomePage = () => {
@@ -162,14 +90,14 @@ const HomePage = () => {
 
   const openEcard = () => {
     setEcardOpen(true);
-    window.history.replaceState(null, '', '#sample-ecard');
+    window.history.replaceState(null, '', HOME_HASH.sampleEcard);
     scrollToId('sample-ecard');
   };
 
   const toggleEcard = () => {
     if (ecardOpen) {
       setEcardOpen(false);
-      if (window.location.hash === '#sample-ecard') {
+      if (window.location.hash === HOME_HASH.sampleEcard) {
         window.history.replaceState(null, '', window.location.pathname);
       }
       return;
@@ -178,7 +106,7 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    if (window.location.hash === '#sample-ecard') {
+    if (window.location.hash === HOME_HASH.sampleEcard) {
       setEcardOpen(true);
     }
     const id = window.location.hash.replace('#', '');
@@ -191,8 +119,8 @@ const HomePage = () => {
     <PageShell
       home
       onSampleEcard={openEcard}
-      title="Secure Fit LLC | Respiratory Fit Testing"
-      description="OSHA-compliant respiratory fit testing in New York. $75 per test, documented e-cards you can scan to verify, and records kept for up to 3 years."
+      title={DEFAULT_TITLE}
+      description={DEFAULT_DESCRIPTION}
     >
       <section className={styles.hero} id="top">
         <div className={styles.heroMedia}>
@@ -213,19 +141,19 @@ const HomePage = () => {
             <p className={styles.heroLead}>
               OSHA-compliant respiratory fit testing for individuals, workplaces, and schools.
               After your test, we email a documented e-card you can scan to verify, and we keep it
-              on file for up to 3 years.
+              on file for up to {RECORD_YEARS} years.
             </p>
             <div className={styles.heroButtons}>
-              <a className={buttons.ctaButton} href="#schedule">
+              <a className={buttons.ctaButton} href={HOME_HASH.schedule}>
                 Schedule Appointment →
               </a>
               <ExternalLink className={buttons.ctaButtonGhost} href={VERIFY_ECARD_URL}>
                 Verify an e-card
               </ExternalLink>
             </div>
-            <p className={styles.heroMotto}>Fit. Test. Breathe. Confidently.</p>
+            <p className={styles.heroMotto}>{MOTTO}</p>
             <ul className={styles.trustBar}>
-              {TRUST_ITEMS.map((item) => (
+              {HOME_TRUST.map((item) => (
                 <li key={item.label}>
                   <Icon name={item.icon} />
                   {item.label}
@@ -270,27 +198,27 @@ const HomePage = () => {
           </p>
         </div>
         <div className={styles.serviceGrid}>
-          {SERVICES.map((service) => (
+          {HOME_SERVICES.map((service) => (
             <article className={styles.serviceCard} id={service.id} key={service.id}>
               <div className={styles.serviceIcon}>
                 <Icon name={service.icon} />
               </div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              {service.external ? (
-                <ExternalLink href={service.href}>{service.linkLabel} →</ExternalLink>
-              ) : (
+              {service.href === HOME_HASH.sampleEcard ? (
                 <a
                   href={service.href}
                   onClick={(event) => {
-                    if (service.href === '#sample-ecard') {
-                      event.preventDefault();
-                      openEcard();
-                    }
+                    event.preventDefault();
+                    openEcard();
                   }}
                 >
                   {service.linkLabel} →
                 </a>
+              ) : (
+                <CtaLink href={service.href} external={service.external}>
+                  {service.linkLabel} →
+                </CtaLink>
               )}
             </article>
           ))}
@@ -303,7 +231,7 @@ const HomePage = () => {
           <p className={styles.sectionLead}>A simple process. A safer tomorrow.</p>
         </div>
         <ol className={styles.processGrid}>
-          {STEPS.map((step) => (
+          {HOME_STEPS.map((step) => (
             <li className={styles.processStep} key={step.number}>
               <span className={styles.processNumber}>{step.number}</span>
               <h3>{step.title}</h3>
@@ -321,29 +249,32 @@ const HomePage = () => {
       <section className={styles.pricingWhy} id="schedule">
         <div className={styles.pricingCard}>
           <p className={styles.pricingKicker}>Clear pricing</p>
-          <h2>$75 <span>per fit test</span></h2>
+          <h2>{FIT_TEST_PRICE} <span>per fit test</span></h2>
           <ul>
             <li>OSHA-compliant testing protocols</li>
             <li>Documented e-card emailed after your test</li>
             <li>Scan the QR to verify the record</li>
-            <li>Records kept on file for up to 3 years</li>
+            <li>Records kept on file for up to {RECORD_YEARS} years</li>
             <li>Manhattan and Brooklyn appointments</li>
             <li>No hidden fees</li>
           </ul>
           <div className={styles.pricingButtons}>
-            <ExternalLink className={buttons.ctaButton} href={MANHATTAN_CALENDLY}>
-              Schedule Manhattan
-            </ExternalLink>
-            <ExternalLink className={buttons.ctaButtonOnDark} href={BROOKLYN_CALENDLY}>
-              Schedule Brooklyn
-            </ExternalLink>
+            {BOOKING_SITES.map((site, index) => (
+              <ExternalLink
+                key={site.id}
+                className={index === 0 ? buttons.ctaButton : buttons.ctaButtonOnDark}
+                href={site.calendly}
+              >
+                {site.scheduleLabel}
+              </ExternalLink>
+            ))}
           </div>
         </div>
 
         <div className={styles.whyPanel} id="why-pick-us">
-          <h2>Why choose Secure Fit LLC?</h2>
+          <h2>Why choose {SITE_NAME}?</h2>
           <p>
-            OSHA-compliant testing, a records system that keeps your e-card on file for up to 3 years,
+            OSHA-compliant testing, a records system that keeps your e-card on file for up to {RECORD_YEARS} years,
             and locations that come to you — including schools and other worksites.
           </p>
           <ul>
@@ -351,8 +282,8 @@ const HomePage = () => {
             <li><strong>Convenient & accessible.</strong> Pop-up stations throughout New York.</li>
             <li><strong>Scan to verify.</strong> Employers and schools can confirm a card is authentic.</li>
             <li><strong>Fast, reliable documentation.</strong> Look up and resend a lost e-card quickly.</li>
-            <li><strong>Transparent pricing.</strong> $75 per fit test. No hidden fees.</li>
-            <li><strong>OSHA-compliant protocols.</strong> Testing follows 29 CFR 1910.134 Appendix A.</li>
+            <li><strong>Transparent pricing.</strong> {FIT_TEST_PRICE} per fit test. No hidden fees.</li>
+            <li><strong>OSHA-compliant protocols.</strong> Testing follows {OSHA_SHORT}.</li>
           </ul>
           <div className={styles.whyVisual}>
             <Image className={styles.featureImg} src={maskHands} alt="Gloved hands holding a respirator mask" />
@@ -365,13 +296,13 @@ const HomePage = () => {
           <h2 className={styles.sectionTitle}>Your documented e-card</h2>
           <p className={styles.sectionLead}>
             After your test, we email a documented e-card with a QR code to verify it. We keep the
-            record on file for up to 3 years.
+            record on file for up to {RECORD_YEARS} years.
           </p>
         </div>
         <ul className={styles.ecardFacts}>
           <li><strong>Scan to verify</strong></li>
-          <li>Records kept on file <strong>3 years</strong></li>
-          <li><strong>$75</strong> per fit test</li>
+          <li>Records kept on file <strong>{RECORD_YEARS} years</strong></li>
+          <li><strong>{FIT_TEST_PRICE}</strong> per fit test</li>
         </ul>
         <div className={styles.ecardActions}>
           <button
@@ -408,7 +339,7 @@ const HomePage = () => {
             <h2 className={styles.sectionTitle}>What people say</h2>
           </div>
           <div className={styles.reviewGrid}>
-            {REVIEWS.map((review) => (
+            {HOME_REVIEWS.map((review) => (
               <blockquote className={styles.reviewCard} key={review.author}>
                 <span className={styles.reviewMark} aria-hidden="true">“</span>
                 <p>{review.text}</p>

@@ -53,8 +53,8 @@
 }
 
 .note {
-    margin: 0 0 2rem;
-    padding: 1rem 1.15rem;
+    margin: 1.75rem 0 2.25rem;
+    padding: 1.25rem 1.4rem;
     background: rgba(167, 227, 224, 0.28);
     border-left: 4px solid $teal;
     border-radius: 0 10px 10px 0;
@@ -133,6 +133,7 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1.15rem;
+    margin-bottom: 0.5rem;
 }
 
 .crumbs {
@@ -204,6 +205,7 @@
 
 .neighbors {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
     margin-top: 2.5rem;

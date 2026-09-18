@@ -1,7 +1,8 @@
-import Link from 'next/link';
+import CtaLink from './CtaLink';
 import PageShell from './PageShell';
 import { LEGAL_DISCLAIMER } from '../lib/legal';
-import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE, LEGAL_MAILING_LINE } from '../lib/site';
+import { ROUTES, legalPath } from '../lib/routes';
+import { CONTACT_EMAIL, LEGAL_EFFECTIVE_DATE, LEGAL_MAILING_LINE, SITE_NAME, pageTitle } from '../lib/site';
 import styles from '../styles/legal.module.scss';
 
 const slugify = (value) =>
@@ -18,11 +19,11 @@ const LegalPolicyPage = ({ policy, previous, next }) => {
   return (
     <PageShell
       current="legal"
-      title={`${policy.title} | Secure Fit LLC`}
+      title={pageTitle(policy.title)}
       description={policy.summary}
     >
       <p className={styles.crumbs}>
-        <Link href="/legal">Legal</Link>
+        <CtaLink href={ROUTES.legal}>Legal</CtaLink>
         {' / '}
         {policy.shortTitle}
       </p>
@@ -33,13 +34,13 @@ const LegalPolicyPage = ({ policy, previous, next }) => {
         <p className={styles.meta}>
           Effective date: {LEGAL_EFFECTIVE_DATE}
           <br />
-          Provider: Secure Fit LLC
+          Provider: {SITE_NAME}
           <br />
           {policy.contactLabel}: {CONTACT_EMAIL}
           {policy.mailing ? (
             <>
               <br />
-              Mail: Secure Fit LLC, {LEGAL_MAILING_LINE}. Written requests may be sent to {CONTACT_EMAIL}.
+              Mail: {SITE_NAME}, {LEGAL_MAILING_LINE}. Written requests may be sent to {CONTACT_EMAIL}.
             </>
           ) : null}
         </p>
@@ -71,14 +72,14 @@ const LegalPolicyPage = ({ policy, previous, next }) => {
 
       <div className={styles.neighbors}>
         {previous ? (
-          <Link href={`/legal/${previous.slug}`}>← {previous.shortTitle}</Link>
+          <CtaLink href={legalPath(previous.slug)}>← {previous.shortTitle}</CtaLink>
         ) : (
           <span />
         )}
         {next ? (
-          <Link href={`/legal/${next.slug}`}>{next.shortTitle} →</Link>
+          <CtaLink href={legalPath(next.slug)}>{next.shortTitle} →</CtaLink>
         ) : (
-          <Link href="/legal">All policies</Link>
+          <CtaLink href={ROUTES.legal}>All policies</CtaLink>
         )}
       </div>
     </PageShell>

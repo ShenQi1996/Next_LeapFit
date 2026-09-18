@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import ExternalLink from './ExternalLink';
+import CtaLink from './CtaLink';
 import logoMark from '../assets/logo.png';
-import { createSectionHref } from '../lib/nav';
-import { RESEND_ECARD_URL, VERIFY_ECARD_URL } from '../lib/site';
+import {
+  HEADER_ACTIONS,
+  HEADER_LINKS,
+  HEADER_MOBILE_ACTIONS,
+  createSectionHref,
+} from '../lib/nav';
+import { HOME_HASH } from '../lib/routes';
+import { SITE_SHORT_NAME, TAGLINE } from '../lib/site';
 import styles from '../styles/header.module.scss';
 
 const SiteHeader = ({ home = false, current }) => {
@@ -15,7 +20,7 @@ const SiteHeader = ({ home = false, current }) => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Primary">
-        <a className={styles.navBrand} href={home ? '#top' : '/'} onClick={closeMenu}>
+        <a className={styles.navBrand} href={home ? HOME_HASH.top : '/'} onClick={closeMenu}>
           <Image
             className={styles.navLogo}
             src={logoMark}
@@ -25,9 +30,9 @@ const SiteHeader = ({ home = false, current }) => {
           />
           <span>
             <span className={styles.navTitle}>
-              Secure Fit <span>LLC</span>
+              {SITE_SHORT_NAME} <span>LLC</span>
             </span>
-            <span className={styles.navTagline}>Precision in every breath</span>
+            <span className={styles.navTagline}>{TAGLINE}</span>
           </span>
         </a>
 
@@ -51,47 +56,44 @@ const SiteHeader = ({ home = false, current }) => {
         </button>
 
         <div id="site-nav" className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ''}`}>
-          <a href={section('#services')} onClick={closeMenu}>Our Services</a>
-          <a href={section('#how-it-works')} onClick={closeMenu}>How It Works</a>
-          <a href={section('#why-pick-us')} onClick={closeMenu}>Why Pick Us</a>
-          <Link
-            href="/contact"
-            className={current === 'contact' ? styles.navCurrent : undefined}
-            onClick={closeMenu}
-          >
-            Contact
-          </Link>
-          <Link
-            href="/legal"
-            className={current === 'legal' ? styles.navCurrent : undefined}
-            onClick={closeMenu}
-          >
-            Legal
-          </Link>
-          <ExternalLink
-            className={styles.navMobileOnly}
-            href={VERIFY_ECARD_URL}
-            onClick={closeMenu}
-          >
-            Verify e-card
-          </ExternalLink>
-          <ExternalLink
-            className={styles.navMobileOnly}
-            href={RESEND_ECARD_URL}
-            onClick={closeMenu}
-          >
-            Lost E-Card
-          </ExternalLink>
+          {HEADER_LINKS.map((link) => {
+            const href = link.kind === 'section' ? section(link.hash) : link.href;
+            return (
+              <CtaLink
+                key={link.label}
+                href={href}
+                className={current && current === link.current ? styles.navCurrent : undefined}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </CtaLink>
+            );
+          })}
+          {HEADER_MOBILE_ACTIONS.map((link) => (
+            <CtaLink
+              key={link.label}
+              className={styles.navMobileOnly}
+              href={link.href}
+              external={link.external}
+              onClick={closeMenu}
+            >
+              {link.label}
+            </CtaLink>
+          ))}
         </div>
 
         <div className={styles.navActions}>
-          <ExternalLink className={styles.navGhost} href={VERIFY_ECARD_URL}>
-            Verify e-card
-          </ExternalLink>
-          <ExternalLink className={styles.navGhost} href={RESEND_ECARD_URL}>
-            Lost E-Card
-          </ExternalLink>
-          <a className={styles.navButton} href={section('#schedule')}>
+          {HEADER_ACTIONS.map((link) => (
+            <CtaLink
+              key={link.label}
+              className={styles.navGhost}
+              href={link.href}
+              external={link.external}
+            >
+              {link.label}
+            </CtaLink>
+          ))}
+          <a className={styles.navButton} href={section(HOME_HASH.schedule)}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="6" width="16" height="14" rx="2" />
               <path d="M8 4v4M16 4v4M4 10h16" />

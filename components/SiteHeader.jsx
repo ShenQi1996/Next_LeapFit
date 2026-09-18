@@ -86,7 +86,7 @@ const SiteHeader = ({ home = false, current }) => {
           {HEADER_ACTIONS.map((link) => (
             <CtaLink
               key={link.label}
-              className={styles.navGhost}
+              className={`${styles.navGhost}${link.compactHide ? ` ${styles.navGhostExtra}` : ''}`}
               href={link.href}
               external={link.external}
             >

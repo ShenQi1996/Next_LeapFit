@@ -1,20 +1,21 @@
 # Secure Fit LLC
 
-> OSHA-compliant qualitative respiratory fit testing in New York City ($75 per test), with digital e-cards, instant QR verification, and pop-up appointment locations in Manhattan and Brooklyn.
+> OSHA-aligned qualitative respiratory fit testing in New York City ($75 per test), with a QR e-card emailed on a two-business-day target and pop-up appointments in Manhattan and Brooklyn.
 
-Secure Fit LLC provides fast, documented respiratory fit testing aligned with OSHA 29 CFR 1910.134 Appendix A for healthcare workers, nursing and medical students, schools, and workplaces. Every passed test includes a digital e-card with a scannable QR code for employer or school verification, and records are kept on file for up to 3 years. Testing is $75 per fit test at Manhattan and Brooklyn pop-up locations by appointment (contact SecureFit2024@gmail.com, Securefit.bk@gmail.com, or +1 646 748 3677).
+Secure Fit LLC provides qualitative respiratory fit testing aligned with OSHA 29 CFR 1910.134 Appendix A for individuals, schools, and workplaces. Every test includes an emailed e-card with a QR code. Delivery targets two business days and is not a same-day guarantee. Cards expire one year from the test date and are kept on file for up to 3 years. A fit-test record is not a medical clearance. Testing is $75 per fit test. Book Manhattan or Brooklyn, or email about an on-site group (SecureFit2024@gmail.com, Securefit.bk@gmail.com, or +1 646 748 3677).
 
 ## Key Pages
 
-- [Homepage](https://secure-fit-llc.app/): Overview of Secure Fit LLC, $75 fit testing pricing, booking links, and a sample e-card preview.
-- [Services](https://secure-fit-llc.app/services): Directory of OSHA, school, workplace, and borough-specific respiratory fit testing services.
-- [Manhattan Fit Testing](https://secure-fit-llc.app/fit-testing-manhattan): Appointment details and booking for Manhattan pop-up fit testing locations.
-- [Brooklyn Fit Testing](https://secure-fit-llc.app/fit-testing-brooklyn): Appointment details and booking for Brooklyn pop-up fit testing locations.
-- [OSHA Respiratory Fit Testing](https://secure-fit-llc.app/osha-respiratory-fit-testing): How Secure Fit follows OSHA 29 CFR 1910.134 Appendix A qualitative testing protocols.
-- [School Fit Testing](https://secure-fit-llc.app/school-fit-testing): Fit testing and verifiable e-card documentation for healthcare, nursing, and clinical programs.
-- [Workplace Fit Testing](https://secure-fit-llc.app/workplace-fit-testing): Fit testing for clinics, employers, and teams needing documented compliance records.
-- [How It Works](https://secure-fit-llc.app/#how-it-works): Step-by-step overview from booking an appointment to receiving your digital e-card.
-- [Why Pick Us](https://secure-fit-llc.app/#why-pick-us): Key reasons clients choose Secure Fit LLC, including pricing, speed, and QR-verified records.
+- [Homepage](https://secure-fit-llc.app/): Overview of Secure Fit LLC, $75 fit testing, booking links, and a sample QR e-card.
+- [Locations](https://secure-fit-llc.app/services): Manhattan, Brooklyn, school, workplace, and OSHA-aligned fit testing pages.
+- [Manhattan Fit Testing](https://secure-fit-llc.app/fit-testing-manhattan): Appointment details and booking for Manhattan pop-up fit testing.
+- [Brooklyn Fit Testing](https://secure-fit-llc.app/fit-testing-brooklyn): Appointment details and booking for Brooklyn pop-up fit testing.
+- [OSHA Respiratory Fit Testing](https://secure-fit-llc.app/osha-respiratory-fit-testing): How testing is aligned with OSHA 29 CFR 1910.134 Appendix A.
+- [School Fit Testing](https://secure-fit-llc.app/school-fit-testing): Fit testing and verifiable e-card documentation for schools and education programs.
+- [Workplace Fit Testing](https://secure-fit-llc.app/workplace-fit-testing): Fit testing for workplaces and teams that need documented fit-test records.
+- [How It Works](https://secure-fit-llc.app/#how-it-works): From booking an appointment to receiving an e-card by email.
+- [Why Pick Us](https://secure-fit-llc.app/#why-pick-us): Flat $75 pricing and the public e-card verification pages. Not a medical clearance.
 - [Contact](https://secure-fit-llc.app/contact): Email addresses, phone number, and Manhattan and Brooklyn scheduling links.
-- [Legal Policies](https://secure-fit-llc.app/legal): Service scope, booking and cancellation terms, privacy policy, and records retention rules.
-- [Verify an E-Card](https://2026-fit-testing-results-e-card.vercel.app/verify): Official portal to verify a Secure Fit LLC digital fit-test e-card via QR code or lookup.
+- [Legal Policies](https://secure-fit-llc.app/legal): Service scope, booking and cancellation terms, privacy, and records retention.
+- [Verify an E-Card](https://2026-fit-testing-results-e-card.vercel.app/verify): Public page to verify an e-card by QR code or confirmation code. No public name search.
+- [Resend an E-Card](https://2026-fit-testing-results-e-card.vercel.app/resend): Public page to resend an e-card using the name, date of birth, and email from the original test.

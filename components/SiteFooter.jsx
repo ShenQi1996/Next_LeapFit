@@ -3,7 +3,7 @@ import CtaLink from './CtaLink';
 import BrandLogo from './BrandLogo';
 import { LEGAL_POLICIES } from '../lib/legal';
 import { FOOTER_LINKS, createSectionHref } from '../lib/nav';
-import { HOME_HASH, legalPath } from '../lib/routes';
+import { ROUTES, legalPath } from '../lib/routes';
 import {
   BOOKING_SITES,
   BROOKLYN_EMAIL,
@@ -19,74 +19,94 @@ import {
 } from '../lib/site';
 import styles from '../styles/footer.module.scss';
 
-const SiteFooter = ({ home = false, onSampleEcard }) => {
+const LEGAL_LINK_LABELS = {
+  communications: 'Email & Texts',
+};
+
+const SiteFooter = ({ home = false }) => {
   const section = createSectionHref(home);
 
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerBrand}>
-          <BrandLogo className={styles.footerLogo} />
-          <div>
-            <h3>{SITE_NAME}</h3>
-            <p>{TAGLINE}</p>
+          <div className={styles.brandRow}>
+            <BrandLogo className={styles.footerLogo} alt="" />
+            <div>
+              <p className={styles.brandName}>{SITE_NAME}</p>
+              <p className={styles.tagline}>{TAGLINE}</p>
+            </div>
           </div>
+          <p className={styles.summary}>
+            Qualitative respiratory fit testing for individuals, schools, and workplaces in
+            Manhattan, Brooklyn, and New York pop-up locations. Every test includes a QR e-card.
+          </p>
         </div>
-        <ul className={styles.footerNav}>
-          {FOOTER_LINKS.map((link) => {
-            const href = link.kind === 'section' ? section(link.hash) : link.href;
-            return (
-              <li key={link.label}>
-                <CtaLink href={href} external={link.kind === 'external'}>
-                  {link.label}
+
+        <nav aria-label="Footer">
+          <h2 className={styles.footerHeading}>Explore</h2>
+          <ul className={styles.linkList}>
+            {FOOTER_LINKS.map((link) => {
+              const href = link.kind === 'section' ? section(link.hash) : link.href;
+              return (
+                <li key={link.label}>
+                  <CtaLink href={href} external={link.kind === 'external'}>
+                    {link.label}
+                  </CtaLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className={styles.footerHeading}>Book & contact</h2>
+          <ul className={styles.linkList}>
+            {BOOKING_SITES.map((site) => (
+              <li key={site.id}>
+                <CtaLink href={site.calendly} external>
+                  {site.scheduleLabel}
                 </CtaLink>
               </li>
-            );
-          })}
-          {onSampleEcard ? (
-            <li>
-              <a
-                href={HOME_HASH.sampleEcard}
-                onClick={(event) => {
-                  event.preventDefault();
-                  onSampleEcard();
-                }}
-              >
-                Sample e-card
-              </a>
-            </li>
-          ) : null}
-        </ul>
-        <div className={styles.footerContact}>
-          <a href={mailto(CONTACT_EMAIL)}>{CONTACT_EMAIL}</a>
-          <a href={mailto(BROOKLYN_EMAIL)}>Brooklyn: {BROOKLYN_EMAIL}</a>
-          <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE}</a>
-          <p>{SERVICE_AREA}</p>
-          {BOOKING_SITES.map((site) => (
-            <CtaLink key={site.id} href={site.calendly} external>
-              {site.scheduleLabel}
-            </CtaLink>
-          ))}
-        </div>
-      </div>
-      <div className={styles.footerLegal}>
-        <p className={styles.footerLegalTitle}>Legal</p>
-        <ul>
-          <li>
-            {LEGAL_POLICIES.map((policy, index) => (
-              <React.Fragment key={policy.slug}>
-                {index > 0 ? ' · ' : null}
-                <CtaLink href={legalPath(policy.slug)}>{policy.navLabel}</CtaLink>
-              </React.Fragment>
             ))}
-          </li>
+            <li>
+              <a href={mailto(CONTACT_EMAIL)}>{CONTACT_EMAIL}</a>
+            </li>
+            <li>
+              <a href={mailto(BROOKLYN_EMAIL)}>{BROOKLYN_EMAIL}</a>
+            </li>
+            <li>
+              <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE}</a>
+            </li>
+            <li>
+              <p>{SERVICE_AREA}</p>
+            </li>
+          </ul>
+        </div>
+
+        <nav aria-label="Legal policies">
+          <h2 className={styles.footerHeading}>
+            <CtaLink href={ROUTES.legal}>Legal policies</CtaLink>
+          </h2>
+          <ul className={styles.legalGrid}>
+            {LEGAL_POLICIES.map((policy) => (
+              <li key={policy.slug}>
+                <CtaLink href={legalPath(policy.slug)}>
+                  {LEGAL_LINK_LABELS[policy.slug] || policy.navLabel}
+                </CtaLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <div className={styles.footerBottom}>
+        <ul className={styles.disclaimers}>
           {FOOTER_DISCLAIMERS.map((text) => (
             <li key={text}>{text}</li>
           ))}
         </ul>
-      </div>
-      <div className={styles.footerBottom}>
-        <p>&copy; {COPYRIGHT_YEAR} {SITE_NAME}. People protected. Healthier tomorrows.</p>
+        <p>&copy; {COPYRIGHT_YEAR} {SITE_NAME}</p>
       </div>
     </footer>
   );

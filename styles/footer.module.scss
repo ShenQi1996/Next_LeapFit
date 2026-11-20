@@ -3,7 +3,7 @@
 .footer {
     background: $navy;
     color: #fff;
-    padding: 3.5rem 1.5rem 1.75rem;
+    padding: 3rem 1.25rem 1.75rem;
 }
 
 .footerContent {
@@ -14,104 +14,140 @@
 }
 
 .footerBrand {
+    min-width: 0;
+}
+
+.brandRow {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-
-    h3 {
-        margin: 0;
-        font-family: $font-heading;
-        font-size: 1.2rem;
-    }
-
-    p {
-        margin: 0.2rem 0 0;
-        color: $aqua;
-        font-size: 0.88rem;
-    }
 }
 
 .footerLogo {
     width: auto;
-    height: 58px;
-    max-width: 96px;
+    height: 56px;
+    max-width: 72px;
     object-fit: contain;
-    background: transparent;
+    flex-shrink: 0;
 }
 
-.footerNav,
-.footerContact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
+.brandName {
+    margin: 0;
+    font-family: $font-heading;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.tagline {
+    margin: 0.2rem 0 0;
+    color: $aqua;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.summary {
+    margin: 0.9rem 0 0;
+    max-width: 28rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.footerHeading {
+    margin: 0 0 0.8rem;
+    color: $aqua;
+    font-family: $font-heading;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+    }
+}
+
+.linkList,
+.legalGrid {
     list-style: none;
     margin: 0;
     padding: 0;
 
     a,
     p {
-        color: rgba(255, 255, 255, 0.82);
+        color: rgba(255, 255, 255, 0.86);
         text-decoration: none;
         margin: 0;
         font-size: 0.95rem;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
     }
 
-    a:hover {
+    a:hover,
+    a:focus-visible {
         color: $aqua;
     }
 }
 
-.footerLegal {
-    max-width: 1240px;
-    margin: 2.25rem auto 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+.linkList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
 }
 
-.footerLegalTitle {
-    margin: 0 0 0.55rem;
-    color: $aqua;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.footerLegal ul {
-    margin: 0;
-    padding-left: 1.1rem;
-    color: rgba(255, 255, 255, 0.62);
-    font-size: 0.82rem;
-    line-height: 1.5;
-}
-
-.footerLegal a {
-    color: $aqua;
-    text-decoration: none;
-}
-
-.footerLegal a:hover,
-.footerLegal a:focus-visible {
-    text-decoration: underline;
+.legalGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
 }
 
 .footerBottom {
     max-width: 1240px;
-    margin: 1.25rem auto 0;
+    margin: 2rem auto 0;
     padding-top: 1.25rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
 
-    p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 0.82rem;
+.disclaimers {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.footerBottom p {
+    margin: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+}
+
+@media screen and (min-width: 700px) {
+    .footer {
+        padding: 3.25rem 1.5rem 1.75rem;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 1.75rem;
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1100px) {
     .footerContent {
-        grid-template-columns: 1.2fr 1fr 1fr;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr) minmax(0, 1.05fr) minmax(0, 1.15fr);
+        gap: 2rem 1.5rem;
         align-items: start;
     }
 }

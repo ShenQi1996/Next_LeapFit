@@ -30,7 +30,6 @@ const ServicePage = ({ page }) => {
 
   return (
     <PageShell
-      current="services"
       title={page.title}
       description={page.description}
       jsonLd={serviceJsonLd(page)}
@@ -38,7 +37,7 @@ const ServicePage = ({ page }) => {
       <p className={styles.crumbs}>
         <CtaLink href={ROUTES.home}>Home</CtaLink>
         {' / '}
-        <CtaLink href={ROUTES.services}>Services</CtaLink>
+        <CtaLink href={ROUTES.services}>Locations</CtaLink>
         {' / '}
         <span>{page.navLabel}</span>
       </p>
@@ -48,7 +47,7 @@ const ServicePage = ({ page }) => {
         <h1>{page.h1}</h1>
         <p className={styles.lead}>{page.lead}</p>
         <p className={styles.meta}>
-          {FIT_TEST_PRICE} per fit test · {OSHA_LABEL}
+          {FIT_TEST_PRICE} per fit test · Aligned with {OSHA_LABEL}
         </p>
       </section>
 

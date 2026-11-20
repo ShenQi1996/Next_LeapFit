@@ -1,5 +1,16 @@
 @use './tokens' as *;
 
+html {
+    scroll-padding-top: 5.25rem;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 *,
 *::before,
 *::after {
@@ -10,6 +21,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: $white;
+    color: $ink;
     font-family: $font-body;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

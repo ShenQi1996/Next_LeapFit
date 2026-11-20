@@ -15,7 +15,6 @@ const PageShell = ({
   description,
   current,
   home = false,
-  onSampleEcard,
   jsonLd,
   children,
 }) => {
@@ -33,7 +32,7 @@ const PageShell = ({
       />
       <SiteHeader home={home} current={current} />
       <main className={home ? undefined : pageStyles.main}>{children}</main>
-      <SiteFooter home={home} onSampleEcard={onSampleEcard} />
+      <SiteFooter home={home} />
       <ChatWidget />
     </div>
   );

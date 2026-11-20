@@ -1,134 +1,134 @@
 @use './tokens' as *;
 
 .hero {
-    position: relative;
-    width: 100%;
-    min-height: calc(100dvh - #{$header-height});
-    overflow: hidden;
+    padding: 1.35rem 1.25rem 2.5rem;
 }
 
-.heroMedia {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        pointer-events: none;
-        background:
-            linear-gradient(
-                180deg,
-                rgba(247, 250, 252, 0.9) 0%,
-                rgba(247, 250, 252, 0.78) 48%,
-                rgba(247, 250, 252, 0.35) 100%
-            );
-    }
-}
-
-.heroImg {
-    object-fit: cover;
-    object-position: 68% 18%;
-}
-
-.heroInner {
-    position: relative;
-    z-index: 1;
+.heroGrid {
     max-width: 1240px;
     margin: 0 auto;
-    min-height: calc(100dvh - #{$header-height});
-    padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
 }
 
 .heroCopy {
-    max-width: 38rem;
+    min-width: 0;
 }
 
 .heroEyebrow {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.7rem;
     color: $teal-dark;
-    font-family: $font-heading;
-    font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
 }
 
 .heroCopy h1 {
-    margin: 0 0 0.45rem;
+    margin: 0 0 0.85rem;
     color: $navy;
     font-family: $font-heading;
-    font-weight: 700;
-    font-size: clamp(2.15rem, 5vw, 3.6rem);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 3.05rem);
     line-height: 1.08;
-    letter-spacing: -1.2px;
-
-    span {
-        color: $teal;
-    }
-}
-
-.heroMission {
-    margin: 0 0 1rem;
-    max-width: 22rem;
-    color: $navy;
-    font-family: $font-accent;
-    font-style: italic;
-    font-weight: 700;
-    font-size: clamp(1.2rem, 2.1vw, 1.55rem);
-    line-height: 1.25;
-    text-align: left;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
 }
 
 .heroLead {
     margin: 0 0 1.2rem;
-    max-width: 36rem;
+    max-width: 40rem;
     color: $muted;
-    font-size: 1.05rem;
-    line-height: 1.65;
+    font-size: 1.02rem;
+    line-height: 1.6;
 }
 
 .heroButtons {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 0.7rem 0.8rem;
+}
+
+.heroPrimary,
+.heroOutline,
+.heroQuiet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.7rem 1.15rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.heroPrimary {
+    color: #fff;
+    background: $navy;
+    border: 2px solid $navy;
+
+    &:hover,
+    &:focus-visible {
+        background: $teal-dark;
+        border-color: $teal-dark;
+    }
+}
+
+.heroOutline {
+    color: $navy;
+    background: #fff;
+    border: 2px solid $navy;
+
+    &:hover,
+    &:focus-visible {
+        color: $teal-dark;
+        border-color: $teal-dark;
+    }
+}
+
+.heroQuiet {
+    min-height: 44px;
+    padding-inline: 0.35rem;
+    color: $teal-dark;
+    background: transparent;
+    border: 2px solid transparent;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: underline;
+    }
 }
 
 .trustBar {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem 1.1rem;
+    gap: 0.8rem;
     list-style: none;
-    margin: 1.35rem 0 0;
+    margin: 1.25rem 0 0;
     padding: 0;
 }
 
 .trustBar li {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 0.35rem;
+    gap: 0.55rem;
     min-width: 0;
     color: $navy;
-    font-family: $font-heading;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    line-height: 1.25;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.35;
+
+    span {
+        hyphens: none;
+    }
 }
 
-.trustBar svg {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
+.trustBar svg,
+.capabilities svg,
+.serviceIcon svg {
     fill: none;
     stroke: $teal;
     stroke-width: 1.7;
@@ -136,78 +136,69 @@
     stroke-linejoin: round;
 }
 
-.heroMotto {
-    margin: 1rem 0 0;
-    color: $teal-dark;
-    font-family: $font-heading;
-    font-weight: 700;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+.trustBar svg,
+.capabilities svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.heroPreview {
+    min-width: 0;
+}
+
+.band {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 3.25rem;
 }
 
 .sectionHeader {
-    text-align: center;
-    margin-bottom: 2.4rem;
-}
-
-.sectionHeaderLeft {
-    text-align: left;
-
-    .sectionLead {
-        margin: 0;
-    }
+    margin-bottom: 1.6rem;
 }
 
 .sectionTitle {
-    font-family: $font-heading;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin: 0 0 0.55rem;
     color: $navy;
-    margin: 0 0 0.7rem;
+    font-family: $font-heading;
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    letter-spacing: -0.03em;
 }
 
 .sectionLead {
-    max-width: 40rem;
-    margin: 0 auto;
+    max-width: 42rem;
+    margin: 0;
     color: $muted;
-    font-size: 1.05rem;
-    line-height: 1.65;
-}
-
-.services,
-.process,
-.ecardSection {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 3.25rem 1.5rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
 }
 
 .serviceGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.15rem;
+    gap: 1rem;
 }
 
 .serviceCard {
     background: #fff;
-    border: 1px solid rgba(11, 45, 74, 0.08);
+    border: 1px solid rgba(15, 42, 74, 0.08);
     border-radius: 16px;
-    padding: 1.5rem;
-    scroll-margin-top: 6rem;
+    padding: 1.35rem;
+    scroll-margin-top: 5.5rem;
 
     h3 {
-        margin: 0 0 0.5rem;
+        margin: 0 0 0.45rem;
         color: $navy;
         font-family: $font-heading;
-        font-size: 1.08rem;
+        font-size: 1.05rem;
         line-height: 1.35;
     }
 
     p {
-        margin: 0 0 0.9rem;
+        margin: 0 0 0.85rem;
         color: $muted;
-        line-height: 1.55;
         font-size: 0.95rem;
+        line-height: 1.55;
     }
 
     a {
@@ -215,26 +206,22 @@
         font-weight: 700;
         text-decoration: none;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
             text-decoration: underline;
         }
     }
 }
 
 .serviceIcon {
-    width: 42px;
-    height: 42px;
-    margin-bottom: 0.9rem;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.75rem;
     color: $teal;
 
     svg {
         width: 32px;
         height: 32px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.7;
-        stroke-linecap: round;
-        stroke-linejoin: round;
     }
 }
 
@@ -243,18 +230,21 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
 .processStep {
     position: relative;
-    text-align: center;
+    padding: 1.2rem 1.15rem 1.15rem;
+    background: #fff;
+    border: 1px solid rgba(15, 42, 74, 0.08);
+    border-radius: 16px;
 
     h3 {
         margin: 0.7rem 0 0.35rem;
         color: $navy;
         font-family: $font-heading;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
     }
 
     p {
@@ -268,8 +258,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: $teal;
     color: #fff;
@@ -279,309 +269,291 @@
 
 .processLink {
     display: inline-block;
-    margin-top: 0.65rem;
+    margin-top: 0.7rem;
     color: $teal-dark;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         text-decoration: underline;
     }
 }
 
-.pricingWhy {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4.5rem;
+.whyGrid {
     display: grid;
-    gap: 1.5rem;
-    scroll-margin-top: 6rem;
+    gap: 1.15rem;
+    align-items: start;
 }
 
-.pricingCard {
+.priceCard {
+    align-self: start;
     background: $navy;
     color: #fff;
-    border-radius: 20px;
-    padding: 2.2rem 1.75rem;
-
-    h2 {
-        margin: 0 0 1.2rem;
-        font-family: $font-heading;
-        font-size: clamp(2.3rem, 4vw, 3.2rem);
-        line-height: 1;
-
-        span {
-            display: block;
-            margin-top: 0.35rem;
-            font-size: 0.95rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: $aqua;
-        }
-    }
-
-    ul {
-        margin: 0 0 1.5rem;
-        padding: 0;
-        list-style: none;
-    }
-
-    li {
-        position: relative;
-        padding: 0.45rem 0 0.45rem 1.5rem;
-        color: rgba(255, 255, 255, 0.9);
-
-        &::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: $teal;
-            font-weight: 700;
-        }
-    }
+    border-radius: 18px;
+    padding: 1.45rem 1.3rem 1.3rem;
+    scroll-margin-top: 5.5rem;
 }
 
-.pricingKicker {
-    margin: 0 0 0.45rem;
-    color: $aqua;
+.priceCopy {
+    margin: 0 0 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+
+.priceAmount {
+    margin: 0;
+    color: #fff;
     font-family: $font-heading;
-    font-size: 0.76rem;
+    font-size: clamp(3.1rem, 5vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+}
+
+.priceFees {
+    margin: 0.4rem 0 0.85rem;
+    color: $aqua;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 0.98rem;
 }
 
-.pricingButtons {
+.scheduleActions {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.scheduleButton {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    border: 2px solid $teal;
+    border-radius: 10px;
+    background: $teal;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        background: $teal-dark;
+        border-color: $teal-dark;
+    }
 }
 
-.whyPanel {
+.onsiteLink {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 0.15rem;
+    color: $aqua;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: underline;
+    }
+}
+
+.portalCard {
+    min-width: 0;
     background: #fff;
-    border-radius: 20px;
-    padding: 2.2rem 1.75rem;
-    border: 1px solid rgba(11, 45, 74, 0.08);
-    scroll-margin-top: 6rem;
+    border: 1px solid rgba(15, 42, 74, 0.08);
+    border-radius: 18px;
+    padding: 1.4rem 1.25rem 1.15rem;
+    box-shadow: 0 10px 30px rgba(15, 42, 74, 0.04);
 
     h2 {
-        margin: 0 0 0.8rem;
+        margin: 0 0 0.5rem;
         color: $navy;
         font-family: $font-heading;
-        font-size: 1.7rem;
-    }
-
-    > p {
-        margin: 0 0 1.2rem;
-        color: $muted;
-        line-height: 1.65;
-    }
-
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    li {
-        position: relative;
-        padding: 0.7rem 0 0.7rem 1.6rem;
-        border-bottom: 1px solid rgba(11, 45, 74, 0.06);
-
-        &::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: $teal;
-            font-weight: 700;
-        }
+        font-size: clamp(1.45rem, 2vw, 1.85rem);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
     }
 }
 
-.whyVisual {
-    margin-top: 1.4rem;
+.portalLead {
+    margin: 0 0 1.1rem;
+    color: $muted;
+    line-height: 1.6;
 }
 
-.featureImg {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-    object-fit: cover;
+.portalMain {
+    display: grid;
+    gap: 0.9rem;
+    align-items: start;
 }
 
-.ecardSection {
+.portalTiles {
+    display: grid;
+    gap: 0.75rem;
+    align-content: flex-start;
+}
+
+.portalTile {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.ecardFacts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    list-style: none;
-    margin: 0 0 1.2rem;
-    padding: 0;
-}
-
-.ecardFacts li {
-    padding: 0.4rem 0.9rem;
-    background: #fff;
-    border: 1px solid rgba(20, 184, 166, 0.28);
-    border-radius: 999px;
-    font-size: 0.86rem;
-}
-
-.ecardFacts strong {
+    gap: 0.3rem;
+    min-height: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(15, 42, 74, 0.1);
+    border-radius: 14px;
+    background: $white;
     color: $navy;
+    text-decoration: none;
+    scroll-margin-top: 5.5rem;
+
+    strong {
+        font-size: 1.02rem;
+    }
+
+    span {
+        color: $muted;
+        font-size: 0.92rem;
+        font-weight: 500;
+        line-height: 1.45;
+    }
+
+    &:hover,
+    &:focus-visible {
+        border-color: $teal;
+    }
 }
 
-.ecardActions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.capabilities {
+    display: grid;
     gap: 0.75rem;
+    list-style: none;
+    margin: 1.1rem 0 0;
+    padding: 0.95rem 0 0;
+    border-top: 1px solid rgba(15, 42, 74, 0.08);
 }
 
-.ecardButton {
-    padding: 0.9rem 1.4rem;
-    font-family: inherit;
+.capabilities li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: $navy;
+    font-size: 0.9rem;
     font-weight: 700;
-    font-size: 1rem;
-    color: #fff;
-    background: $navy;
-    border: 2px solid $navy;
-    border-radius: 10px;
-    cursor: pointer;
-
-    &[aria-expanded='true'] {
-        background: #fff;
-        color: $navy;
-    }
-}
-
-.ecardPanel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease, margin 0.35s ease;
-    width: 100%;
-    max-width: 600px;
-    scroll-margin-top: 6rem;
-}
-
-.ecardPanelOpen {
-    grid-template-rows: 1fr;
-    margin-top: 1.5rem;
-}
-
-.ecardPanelInner {
-    overflow: hidden;
-}
-
-.reviews {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4.5rem;
-    display: grid;
-    gap: 1.5rem;
-}
-
-.reviewContent {
-    .sectionTitle {
-        color: $navy;
-    }
+    line-height: 1.35;
 }
 
 .reviewGrid {
     display: grid;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 .reviewCard {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     margin: 0;
-    padding: 1.6rem 1.6rem 1.4rem;
+    padding: 1.35rem 1.3rem 1.2rem;
     background: #fff;
-    border: 1px solid rgba(11, 45, 74, 0.08);
+    border: 1px solid rgba(15, 42, 74, 0.08);
     border-radius: 16px;
 
     p {
-        margin: 0 0 0.85rem;
+        flex: 1;
+        margin: 0 0 0.9rem;
         color: $navy;
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         line-height: 1.6;
-        font-style: italic;
     }
 
     cite {
         color: $teal-dark;
         font-style: normal;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
     }
 }
 
 .reviewMark {
     display: block;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.35rem;
     color: $teal;
-    font-family: $font-accent;
-    font-size: 2.6rem;
-    line-height: 0.7;
+    font-family: $font-heading;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 0.8;
 }
 
-.reviewSkyline {
-    position: relative;
-    min-height: 220px;
-    overflow: hidden;
-    border-radius: 16px;
-
-    img {
-        object-fit: cover;
-        object-position: center 40%;
-    }
-}
-
-.resendBanner {
-    width: min(1240px, calc(100% - 3rem));
-    max-width: 1240px;
-    margin: 1.75rem auto 0;
-    padding: 2rem 1.5rem;
-    background: #fff;
-    border: 1px solid rgba(20, 184, 166, 0.3);
-    border-radius: 20px;
+.inquiry {
     display: grid;
-    gap: 1.2rem;
-    scroll-margin-top: 6.5rem;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid rgba(15, 42, 74, 0.08);
+    border-left: 4px solid $teal;
+    border-radius: 14px;
 
-    h2 {
-        margin: 0 0 0.4rem;
+    h3 {
+        margin: 0 0 0.3rem;
         color: $navy;
         font-family: $font-heading;
-        font-size: 1.55rem;
+        font-size: 1.05rem;
     }
 
     p {
         margin: 0;
         color: $muted;
-        line-height: 1.6;
-        max-width: 40rem;
+        line-height: 1.5;
     }
 }
 
-.verifyBanner {
-    @extend .resendBanner;
-    background: rgba(20, 184, 166, 0.08);
-    border-color: rgba(20, 184, 166, 0.45);
+.inquiryLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+
+    a {
+        color: $teal-dark;
+        font-weight: 700;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+    }
 }
 
-@media screen and (min-width: 768px) {
-    .trustBar {
-        grid-template-columns: repeat(3, 1fr);
+@media screen and (max-width: 720px) {
+    .heroButtons {
+        flex-direction: column;
+        align-items: stretch;
     }
 
+    .heroPrimary,
+    .heroOutline,
+    .heroQuiet {
+        width: 100%;
+    }
+
+    .heroLead {
+        font-size: 0.98rem;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .capabilities {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .trustBar,
     .serviceGrid,
     .reviewGrid {
         grid-template-columns: 1fr 1fr;
@@ -591,89 +563,51 @@
         grid-template-columns: 1fr 1fr;
     }
 
-    .resendBanner,
-    .verifyBanner {
-        grid-template-columns: 1fr auto;
+    .inquiry {
+        grid-template-columns: minmax(0, 1fr) auto;
         align-items: center;
-        padding: 2.2rem;
+    }
+
+    .portalMain {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: stretch;
+    }
+
+    .portalTiles {
+        align-self: stretch;
+        grid-template-rows: 1fr 1fr;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .hero {
-        height: calc(100dvh - #{$header-height});
-        min-height: calc(100dvh - #{$header-height});
-        max-height: calc(100dvh - #{$header-height});
+        padding: 2.5rem 2rem 3.25rem;
     }
 
-    .heroMedia::after {
-        background:
-            linear-gradient(
-                90deg,
-                rgba(247, 250, 252, 0.96) 0%,
-                rgba(247, 250, 252, 0.9) 26%,
-                rgba(247, 250, 252, 0.38) 54%,
-                rgba(247, 250, 252, 0.05) 78%,
-                rgba(247, 250, 252, 0) 100%
-            );
-    }
-
-    .heroInner {
-        display: grid;
-        grid-template-columns: minmax(20rem, 38rem) 1fr;
+    .heroGrid {
+        grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+        gap: 2.75rem;
         align-items: center;
-        min-height: calc(100dvh - #{$header-height});
-        padding: 2rem;
-    }
-
-    .heroCopy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     .trustBar {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .processStep:not(:last-child)::after {
-        content: '→';
-        position: absolute;
-        top: 10px;
-        right: -0.35rem;
-        color: $teal;
-        font-size: 1.35rem;
-        font-weight: 700;
-    }
-
-    .reviews {
-        grid-template-columns: 1.4fr 0.85fr;
-        align-items: stretch;
-        padding: 0 2rem 4.5rem;
-    }
-
-    .reviewSkyline {
-        min-height: 100%;
+    .band {
+        padding: 1.25rem 2rem 4rem;
     }
 
     .serviceGrid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .processGrid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .pricingWhy {
-        grid-template-columns: 0.9fr 1.1fr;
-        align-items: stretch;
-    }
-
-    .services,
-    .process,
-    .ecardSection {
-        padding: 3.75rem 2rem;
+    .whyGrid {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: 1.35rem;
     }
 }
-
-

@@ -18,7 +18,7 @@ const Lottie = dynamic(() => import('lottie-react').then((mod) => mod.Lottie), {
 const WELCOME_MESSAGE = {
   role: 'assistant',
   content:
-    "Hey, welcome in! I can help with fit tests, pricing, masks, booking, verifying an e-card, or a lost card. What can I do for you?",
+    "Hey, welcome in! I can help with fit tests, the $75 price, booking, verifying an e-card, or a lost card. What can I do for you?",
 };
 
 const QUESTION_COUNT_KEY = 'secureFitChatDaily';

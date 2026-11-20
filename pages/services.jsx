@@ -6,16 +6,16 @@ import styles from '../styles/legal.module.scss';
 
 const ServicesIndexPage = () => (
   <PageShell
-    current="services"
-    title={pageTitle('Fit Testing Services')}
-    description={`Respiratory fit testing in Manhattan and Brooklyn, OSHA protocols, schools, and workplaces. ${FIT_TEST_PRICE} per test.`}
+    current="locations"
+    title={pageTitle('Locations')}
+    description={`Manhattan, Brooklyn, and New York pop-up fit testing. OSHA-aligned qualitative tests for individuals, schools, and workplaces. ${FIT_TEST_PRICE} per test.`}
   >
-    <section className={styles.hero}>
-      <p className={styles.kicker}>Services</p>
-      <h1>Fit testing pages</h1>
+    <section className={styles.hero} id="locations">
+      <p className={styles.kicker}>Locations</p>
+      <h1>Manhattan, Brooklyn, and pop-up locations</h1>
       <p className={styles.lead}>
-        Pick the page that matches what you need. Each one explains the same {FIT_TEST_PRICE} test
-        in a different context, then links to booking or contact.
+        Choose a borough or a program. Each page explains the same {FIT_TEST_PRICE} qualitative fit
+        test, aligned with OSHA 29 CFR 1910.134 Appendix A, then links to booking or contact.
       </p>
     </section>
 

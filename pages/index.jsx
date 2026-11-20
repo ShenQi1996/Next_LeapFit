@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect } from 'react';
 import CtaLink from '../components/CtaLink';
 import ExternalLink from '../components/ExternalLink';
 import PageShell from '../components/PageShell';
 import SampleEcard from '../components/SampleEcard';
-import heroPhoto from '../assets/hero-clinician.jpg';
-import maskHands from '../assets/mask-hands.jpg';
-import nycSkyline from '../assets/nyc-skyline.jpg';
-import { HOME_REVIEWS, HOME_SERVICES, HOME_STEPS, HOME_TRUST } from '../lib/home';
+import { HERO_TRUST, HOME_REVIEWS, HOME_SERVICES, HOME_STEPS } from '../lib/home';
 import { HOME_HASH } from '../lib/routes';
 import {
   BOOKING_SITES,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_HREF,
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
   FIT_TEST_PRICE,
-  MOTTO,
-  OSHA_SHORT,
-  RECORD_YEARS,
   RESEND_ECARD_URL,
-  SITE_NAME,
   VERIFY_ECARD_URL,
+  mailto,
 } from '../lib/site';
-import buttons from '../styles/buttons.module.scss';
 import styles from '../styles/home.module.scss';
 
 const ICONS = {
@@ -50,12 +45,6 @@ const ICONS = {
       <path d="M13 16.4c.6-1.5 2-2.4 3.5-2.4 1.6 0 3 .9 3.5 2.5" />
     </svg>
   ),
-  person: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="8" r="3.2" />
-      <path d="M6.5 19c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5" />
-    </svg>
-  ),
   pin: (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z" />
@@ -74,127 +63,81 @@ const ICONS = {
       <path d="m8 12 2.5 2.5L16 9" />
     </svg>
   ),
+  lock: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="6" y="10" width="12" height="9" rx="2" />
+      <path d="M8 10V8a4 4 0 0 1 8 0v2" />
+    </svg>
+  ),
 };
+
+const CAPABILITIES = [
+  { icon: 'verify', label: 'Instant QR Authenticity' },
+  { icon: 'lock', label: 'Privacy-First Lookup' },
+  { icon: 'card', label: '3-Year Compliance Archive' },
+];
 
 const Icon = ({ name }) => ICONS[name] || null;
 
 const HomePage = () => {
-  const [ecardOpen, setEcardOpen] = useState(false);
-
-  const scrollToId = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  };
-
-  const openEcard = () => {
-    setEcardOpen(true);
-    window.history.replaceState(null, '', HOME_HASH.sampleEcard);
-    scrollToId('sample-ecard');
-  };
-
-  const toggleEcard = () => {
-    if (ecardOpen) {
-      setEcardOpen(false);
-      if (window.location.hash === HOME_HASH.sampleEcard) {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-      return;
-    }
-    openEcard();
-  };
-
   useEffect(() => {
-    if (window.location.hash === HOME_HASH.sampleEcard) {
-      setEcardOpen(true);
-    }
     const id = window.location.hash.replace('#', '');
-    if (id) {
-      window.setTimeout(() => scrollToId(id), 50);
+    if (!id) {
+      return undefined;
     }
+
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
-    <PageShell
-      home
-      onSampleEcard={openEcard}
-      title={DEFAULT_TITLE}
-      description={DEFAULT_DESCRIPTION}
-    >
+    <PageShell home title={DEFAULT_TITLE} description={DEFAULT_DESCRIPTION}>
       <section className={styles.hero} id="top">
-        <div className={styles.heroMedia}>
-          <Image
-            className={styles.heroImg}
-            src={heroPhoto}
-            alt="Healthcare professional wearing a protective respirator"
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
-        <div className={styles.heroInner}>
+        <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
-            <p className={styles.heroEyebrow}>Respiratory Fit Testing | New York</p>
-            <h1>Fit Today. <span>Healthier Tomorrows.</span></h1>
-            <p className={styles.heroMission}>Same mission. A brighter tomorrow.</p>
+            <p className={styles.heroEyebrow}>
+              OSHA-Aligned Fit Testing across NYC and Pop-Up Locations
+            </p>
+            <h1>{FIT_TEST_PRICE} OSHA-Aligned Respiratory Fit Testing. QR E-Card Included.</h1>
             <p className={styles.heroLead}>
-              OSHA-compliant respiratory fit testing for individuals, workplaces, and schools.
-              After your test, we email a documented e-card you can scan to verify, and we keep it
-              on file for up to {RECORD_YEARS} years.
+              Book in Manhattan, Brooklyn, or New York pop-up locations for individuals, schools,
+              and workplaces. Receive a QR-verifiable e-card by email targeting delivery within two
+              business days, kept on file for three years.
             </p>
             <div className={styles.heroButtons}>
-              <a className={buttons.ctaButton} href={HOME_HASH.schedule}>
-                Schedule Appointment →
+              <a className={styles.heroPrimary} href={HOME_HASH.schedule}>
+                Book a {FIT_TEST_PRICE} Fit Test
               </a>
-              <ExternalLink className={buttons.ctaButtonGhost} href={VERIFY_ECARD_URL}>
-                Verify an e-card
+              <ExternalLink className={styles.heroOutline} href={VERIFY_ECARD_URL}>
+                Verify an E-Card
+              </ExternalLink>
+              <ExternalLink className={styles.heroQuiet} href={RESEND_ECARD_URL}>
+                Lost your e-card?
               </ExternalLink>
             </div>
-            <p className={styles.heroMotto}>{MOTTO}</p>
             <ul className={styles.trustBar}>
-              {HOME_TRUST.map((item) => (
+              {HERO_TRUST.map((item) => (
                 <li key={item.label}>
                   <Icon name={item.icon} />
-                  {item.label}
+                  <span>{item.label}</span>
                 </li>
               ))}
             </ul>
           </div>
+          <div className={styles.heroPreview}>
+            <SampleEcard variant="compact" />
+          </div>
         </div>
       </section>
 
-      <section className={styles.verifyBanner} id="verify-ecard">
-        <div>
-          <h2>Verify an e-card</h2>
-          <p>
-            Scan the QR on a Secure Fit e-card or enter the confirm code. We show whether the
-            record is on file, still valid, expired, or did not pass — without a public name search.
-          </p>
-        </div>
-        <ExternalLink className={buttons.ctaButton} href={VERIFY_ECARD_URL}>
-          Verify an e-card
-        </ExternalLink>
-      </section>
-
-      <section className={styles.resendBanner} id="lost-ecard">
-        <div>
-          <h2>Lost your e-card?</h2>
-          <p>
-            Enter the name, date of birth, and email from your original fit test.
-            We will send your most recent card to the email on file.
-          </p>
-        </div>
-        <ExternalLink className={buttons.ctaButton} href={RESEND_ECARD_URL}>
-          Resend via email
-        </ExternalLink>
-      </section>
-
-      <section className={styles.services} id="services">
-        <div className={`${styles.sectionHeader} ${styles.sectionHeaderLeft}`}>
-          <h2 className={styles.sectionTitle}>Our Services</h2>
+      <section className={styles.band} id="services">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Services</h2>
           <p className={styles.sectionLead}>
-            Professional respiratory fit testing, documented e-cards, and pop-up locations throughout New York.
+            Qualitative fit testing, QR e-cards, and pop-up locations throughout New York.
           </p>
         </div>
         <div className={styles.serviceGrid}>
@@ -205,30 +148,20 @@ const HomePage = () => {
               </div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              {service.href === HOME_HASH.sampleEcard ? (
-                <a
-                  href={service.href}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    openEcard();
-                  }}
-                >
-                  {service.linkLabel} →
-                </a>
-              ) : (
-                <CtaLink href={service.href} external={service.external}>
-                  {service.linkLabel} →
-                </CtaLink>
-              )}
+              <CtaLink href={service.href} external={service.external}>
+                {service.linkLabel} →
+              </CtaLink>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={styles.process} id="how-it-works">
-        <div className={`${styles.sectionHeader} ${styles.sectionHeaderLeft}`}>
-          <h2 className={styles.sectionTitle}>How Fit Testing Works</h2>
-          <p className={styles.sectionLead}>A simple process. A safer tomorrow.</p>
+      <section className={styles.band} id="how-it-works">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>How It Works</h2>
+          <p className={styles.sectionLead}>
+            Book a test, complete it with a trained fit tester, and receive a QR e-card by email.
+          </p>
         </div>
         <ol className={styles.processGrid}>
           {HOME_STEPS.map((step) => (
@@ -246,111 +179,96 @@ const HomePage = () => {
         </ol>
       </section>
 
-      <section className={styles.pricingWhy} id="schedule">
-        <div className={styles.pricingCard}>
-          <p className={styles.pricingKicker}>Clear pricing</p>
-          <h2>{FIT_TEST_PRICE} <span>per fit test</span></h2>
-          <ul>
-            <li>OSHA-compliant testing protocols</li>
-            <li>Documented e-card emailed after your test</li>
-            <li>Scan the QR to verify the record</li>
-            <li>Records kept on file for up to {RECORD_YEARS} years</li>
-            <li>Manhattan and Brooklyn appointments</li>
-            <li>No hidden fees</li>
-          </ul>
-          <div className={styles.pricingButtons}>
-            {BOOKING_SITES.map((site, index) => (
-              <ExternalLink
-                key={site.id}
-                className={index === 0 ? buttons.ctaButton : buttons.ctaButtonOnDark}
-                href={site.calendly}
-              >
-                {site.scheduleLabel}
-              </ExternalLink>
-            ))}
-          </div>
-        </div>
+      <section className={styles.band} id="why-pick-us">
+        <div className={styles.whyGrid}>
+          <article className={styles.priceCard} id="schedule">
+            <p className={styles.priceAmount}>{FIT_TEST_PRICE}</p>
+            <p className={styles.priceFees}>Flat pricing. No hidden fees.</p>
+            <p className={styles.priceCopy}>
+              Qualitative fit testing aligned with OSHA 29 CFR 1910.134 Appendix A by trained fit
+              testers across Manhattan, Brooklyn, and NY pop-up locations for schools and workplaces.
+              Fit testing only, not a medical clearance.
+            </p>
+            <div className={styles.scheduleActions}>
+              {BOOKING_SITES.map((site) => (
+                <ExternalLink key={site.id} className={styles.scheduleButton} href={site.calendly}>
+                  {site.scheduleLabel}
+                </ExternalLink>
+              ))}
+              <a className={styles.onsiteLink} href={mailto(CONTACT_EMAIL)}>
+                On-site groups & schools
+              </a>
+            </div>
+          </article>
 
-        <div className={styles.whyPanel} id="why-pick-us">
-          <h2>Why choose {SITE_NAME}?</h2>
-          <p>
-            OSHA-compliant testing, a records system that keeps your e-card on file for up to {RECORD_YEARS} years,
-            and locations that come to you — including schools and other worksites.
-          </p>
-          <ul>
-            <li><strong>Experienced technicians.</strong> Accurate testing with clear documentation.</li>
-            <li><strong>Convenient & accessible.</strong> Pop-up stations throughout New York.</li>
-            <li><strong>Scan to verify.</strong> Employers and schools can confirm a card is authentic.</li>
-            <li><strong>Fast, reliable documentation.</strong> Look up and resend a lost e-card quickly.</li>
-            <li><strong>Transparent pricing.</strong> {FIT_TEST_PRICE} per fit test. No hidden fees.</li>
-            <li><strong>OSHA-compliant protocols.</strong> Testing follows {OSHA_SHORT}.</li>
-          </ul>
-          <div className={styles.whyVisual}>
-            <Image className={styles.featureImg} src={maskHands} alt="Gloved hands holding a respirator mask" />
-          </div>
+          <article className={styles.portalCard}>
+            <h2>E-Card & Verification Portal Showcase</h2>
+            <p className={styles.portalLead}>
+              Every test includes an emailed documented e-card targeting delivery within two business
+              days, kept on file for up to three years and verifiable anytime by QR code or
+              confirmation code.
+            </p>
+            <div className={styles.portalMain}>
+              <SampleEcard variant="compact" />
+              <div className={styles.portalTiles}>
+                <ExternalLink className={styles.portalTile} href={VERIFY_ECARD_URL} id="verify-ecard">
+                  <strong>Verify an E-Card</strong>
+                  <span>Scan the QR or enter the confirmation code. No public name search.</span>
+                </ExternalLink>
+                <ExternalLink className={styles.portalTile} href={RESEND_ECARD_URL} id="lost-ecard">
+                  <strong>Lost Your E-Card?</strong>
+                  <span>Resend the card using the name, date of birth, and email from the original test.</span>
+                </ExternalLink>
+              </div>
+            </div>
+            <ul className={styles.capabilities}>
+              {CAPABILITIES.map((item) => (
+                <li key={item.label}>
+                  <Icon name={item.icon} />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
         </div>
       </section>
 
-      <section className={styles.ecardSection} id="sample-ecard" aria-label="Sample results e-card">
+      <section className={styles.band} id="sample-ecard" aria-label="Documented e-card">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Your documented e-card</h2>
+          <h2 className={styles.sectionTitle}>Documented E-Card</h2>
           <p className={styles.sectionLead}>
-            After your test, we email a documented e-card with a QR code to verify it. We keep the
-            record on file for up to {RECORD_YEARS} years.
+            This sample is open so you can read every field. It is not a real fit-test record.
           </p>
         </div>
-        <ul className={styles.ecardFacts}>
-          <li><strong>Scan to verify</strong></li>
-          <li>Records kept on file <strong>{RECORD_YEARS} years</strong></li>
-          <li><strong>{FIT_TEST_PRICE}</strong> per fit test</li>
-        </ul>
-        <div className={styles.ecardActions}>
-          <button
-            type="button"
-            className={styles.ecardButton}
-            onClick={toggleEcard}
-            aria-expanded={ecardOpen}
-            aria-controls="sample-ecard-preview"
-          >
-            {ecardOpen ? 'Hide sample e-card' : 'View sample e-card'}
-          </button>
-          <ExternalLink className={buttons.ctaButtonGhost} href={VERIFY_ECARD_URL}>
-            Verify an e-card
-          </ExternalLink>
-          <ExternalLink className={buttons.ctaButtonGhost} href={RESEND_ECARD_URL}>
-            Resend a lost e-card
-          </ExternalLink>
-        </div>
-        <div
-          id="sample-ecard-preview"
-          className={`${styles.ecardPanel} ${ecardOpen ? styles.ecardPanelOpen : ''}`}
-          inert={ecardOpen ? undefined : ''}
-          aria-hidden={!ecardOpen}
-        >
-          <div className={styles.ecardPanelInner}>
-            <SampleEcard />
-          </div>
-        </div>
+        <SampleEcard />
       </section>
 
-      <section className={styles.reviews} id="reviews">
-        <div className={styles.reviewContent}>
-          <div className={`${styles.sectionHeader} ${styles.sectionHeaderLeft}`}>
-            <h2 className={styles.sectionTitle}>What people say</h2>
-          </div>
-          <div className={styles.reviewGrid}>
-            {HOME_REVIEWS.map((review) => (
-              <blockquote className={styles.reviewCard} key={review.author}>
-                <span className={styles.reviewMark} aria-hidden="true">“</span>
-                <p>{review.text}</p>
-                <cite>— {review.author}</cite>
-              </blockquote>
-            ))}
-          </div>
+      <section className={styles.band} id="reviews">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>What people say</h2>
         </div>
-        <div className={styles.reviewSkyline}>
-          <Image src={nycSkyline} alt="New York City skyline" fill sizes="(min-width: 1024px) 32vw, 100vw" />
+        <div className={styles.reviewGrid}>
+          {HOME_REVIEWS.map((review) => (
+            <blockquote className={styles.reviewCard} key={review.author}>
+              <span className={styles.reviewMark} aria-hidden="true">“</span>
+              <p>{review.text}</p>
+              <cite>{review.author}</cite>
+            </blockquote>
+          ))}
         </div>
+        <aside className={styles.inquiry}>
+          <div>
+            <h3>Group and school fit testing</h3>
+            <p>
+              OSHA-aligned qualitative testing for schools and workplaces. Fit testing only, not a
+              medical clearance.
+            </p>
+          </div>
+          <div className={styles.inquiryLinks}>
+            <a href={mailto(CONTACT_EMAIL)}>{CONTACT_EMAIL}</a>
+            <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE}</a>
+          </div>
+        </aside>
       </section>
     </PageShell>
   );
